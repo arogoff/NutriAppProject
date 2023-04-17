@@ -3,18 +3,20 @@ package src;
 import src.objs.User;
 import src.utils.*;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("Main");
         LoadIngredients.readIn();
+        UserUtils.loadUsers();
         System.out.println("Hello 'user', Please choose an option to view data!");
 
         Boolean run = true;
         Scanner scanner = new Scanner(System.in);
+
+        User currentUser = null;
 
         while (run == true) {
 
@@ -25,9 +27,23 @@ public class Main {
                 int option = scanner.nextInt();
 
                 if (option == 1) { //Login function
-                    System.out.println("Login()");
+                    ProxyLogin login = new ProxyLogin();
+
+                    currentUser = login.authenticate(null);
+
+                    if (currentUser != null) {
+                        NutriAppManager.NutriApp(currentUser);
+                    }
+
                 } else if (option == 2) { //Create account function
-                    System.out.println("Create Account()");
+                    ProxyCreateUser create = new ProxyCreateUser();
+
+                    currentUser = create.authenticate(null, null, null, null, null, null, null, null);
+
+                    if (currentUser != null) {
+                        NutriAppManager.NutriApp(currentUser);
+                    }
+
                 } else if (option == 3) { //Exit function
                     run = false;
                     System.out.println("Exit()");
@@ -35,12 +51,10 @@ public class Main {
                     System.out.println("Invalid option entered, enter a number 1-3 to view data.");
                 }
 
-            }
-            catch (InputMismatchException ime) {
+            } catch (InputMismatchException ime) {
                 System.out.println("Invalid option entered, enter a number 1-3 to view data.");
                 scanner.nextLine();
             }
         }
-
     }
 }

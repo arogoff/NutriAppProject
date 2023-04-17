@@ -1,53 +1,55 @@
 package src.objs;
 
 abstract class Food {
-    public double calories;
-    public double fat;
-    public double protein;
-    public double fiber;
-    public double carbs;
+    public String name;
+    public String calories;
+    public String fat;
+    public String protein;
+    public String fiber;
+    public String carbs;
 
-    public void setCalories(double calories) {
+    public void setCalories(String calories) {
         this.calories = calories;
     }
 
-    public double getCalories() {
+    public String getCalories() {
         return calories;
     }
 
-    public void setFat(double fat) {
+    public void setFat(String fat) {
         this.fat = fat;
     }
 
-    public double getFat() {
+    public String getFat() {
         return fat;
     }
 
-    public void setProtein(double protein) {
+    public void setProtein(String protein) {
         this.protein = protein;
     }
 
-    public double getProtein() {
+    public String getProtein() {
         return protein;
     }
 
-    public void setFiber(double fiber) {
+    public void setFiber(String fiber) {
         this.fiber = fiber;
     }
 
-    public double getFiber() {
+    public String getFiber() {
         return fiber;
     }
 
-    public void setCarbs(double carbs) {
+    public void setCarbs(String carbs) {
         this.carbs = carbs;
     }
 
-    public double getCarbs() {
+    public String getCarbs() {
         return carbs;
     }
 
-    public Food(String name, double calories, double fat, double protein, double fiber, double carbs) {
+    public Food(String name, String calories, String fat, String protein, String fiber, String carbs) {
+        this.name = name;
         this.calories = calories;
         this.fat = fat;
         this.protein = protein;

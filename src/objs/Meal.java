@@ -1,7 +1,7 @@
 package src.objs;
 
 public class Meal extends Food {
-    public Meal(String name, int calories, int fat, int protein, int fiber, int carbs) {
+    public Meal(String name, String calories, String fat, String protein, String fiber, String carbs) {
         super(name, calories, fat, protein, fiber, carbs);
     }
 

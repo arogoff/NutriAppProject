@@ -23,12 +23,8 @@ public class UserUtils {
             String answer;
 
             while ((answer = inputFile.readLine()) != null) {
-                System.out.println(answer);
-
                 String[] user = answer.split(",");
                 userArrayList.add(new User(user[0], user[1], user[2], user[3], user[4], user[5], user[6], user[7]));
-
-
             }
 
             return userArrayList;
@@ -72,12 +68,13 @@ public class UserUtils {
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(username + "," + passwordHash + "," + firstName+ "," + lastName + "," + dailyTarget + "," + height + "," + weight + "," +birthDate + "\n");
                 bw.close();
-                System.out.println("Successfully wrote to the file.");
+                //System.out.println("Successfully wrote to the file.");
             } catch (IOException e) {
                 System.out.println("Error [UserUtils.createUser] ! An error occurred: ");
                 e.printStackTrace();
             }
             //write user to users.csv
+            userArrayList.add(newUser);
             return newUser;
         }else if(username.equals(null) || passwordHash.equals(null)){
             System.out.println("Error [UserUtils.createUser] ! Username is null and/or passwordHash is null!");
