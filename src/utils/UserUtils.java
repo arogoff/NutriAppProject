@@ -15,7 +15,7 @@ public class UserUtils {
      * Read in and create a user profile for everyone listed in users.csv. Attach each user object to the userArrayList above.
      * no return
      */
-    public static void loadUsers(){
+    public static ArrayList<User> loadUsers(){
         try {
             BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/users.csv"));
 
@@ -31,9 +31,13 @@ public class UserUtils {
 
             }
 
+            return userArrayList;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return null;
     }
 
     /*
