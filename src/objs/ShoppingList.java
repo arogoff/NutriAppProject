@@ -1,5 +1,6 @@
 package src.objs;
 
+//imports for file manipulation
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -7,7 +8,7 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ShoppingList {
-    static void viewShoppingList() { //Function to read shopping list, create shopping list, and modify shopping list
+    public static void viewShoppingList() { //Function to read shopping list, create shopping list, and modify shopping list
         try { //Create the file
             File shop = new File("shoppingList.txt");
             if (shop.createNewFile()) { //If the file does not exist yet
@@ -15,7 +16,14 @@ public class ShoppingList {
                     FileWriter myWriter = new FileWriter("shoppingList.txt");
                     Scanner shoppingListScanner = new Scanner(System.in);
                     System.out.println("Write your shopping list here, press enter when you're done: ");
+                    if (ITEM.stock() < 3) { //Adds to shopping list if any ingredient in their house is low/out of stock
+                        System.out.println("" + ITEM.stock() + "\n");
+                    }
+                    else { //None of the ingredients the user has are low/out of stock
+                        System.out.println("All the ingredients at your house are in stock and not low in stock!");
+                    }
                     String shoppingList = shoppingListScanner.nextLine(); //User input is the shopping list
+                    myWriter.write(ITEM.stock() < 3);
                     myWriter.write(shoppingList); //Write user input to file
                     myWriter.close();
                     System.out.println("Shopping list updated with: " + shoppingList);

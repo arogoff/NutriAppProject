@@ -1,14 +1,10 @@
 package src;
 
-import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import src.objs.User;
-import java.io.File;
-import java.io.IOException;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
 import src.utils.UserUtils;
+import static src.objs.ShoppingList.viewShoppingList;
 
 public class NutriAppManager {
 
