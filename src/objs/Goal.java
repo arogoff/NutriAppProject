@@ -19,4 +19,6 @@ public abstract class Goal {
 
     public abstract String getGoalInfo();
 
+    public abstract int getCalorieLimit();
+
 }
