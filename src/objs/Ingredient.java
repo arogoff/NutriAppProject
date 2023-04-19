@@ -11,7 +11,7 @@ public class Ingredient extends Food{
     }
 
     public String getInfo(){
-        String info = ingNum() + " - " + ingDesc();
+        String info = ingNum() + " \n" + getStock() + "\n" + ingDesc();
         return info;
     }
 
