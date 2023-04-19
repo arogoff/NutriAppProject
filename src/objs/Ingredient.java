@@ -1,10 +1,13 @@
 package src.objs;
 
 public class Ingredient extends Food{
+
+    public int stock;
     public String[] ingredient;
     public Ingredient(String[] ingredient){
         super(ingredient[1], ingredient[3], ingredient[44], ingredient[4], ingredient[8], ingredient[7]);
         this.ingredient = ingredient;
+        stock = 0;
     }
 
     public String getInfo(){
@@ -12,6 +15,13 @@ public class Ingredient extends Food{
         return info;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
     public String ingNum(){
         return ingredient[0];
     }
