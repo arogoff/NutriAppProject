@@ -19,7 +19,7 @@ public class ShoppingList {
                     if (ITEM.stock() < 3) { //Adds to shopping list if any ingredient in their house is low/out of stock
                         System.out.println("" + ITEM.stock() + "\n");
                     }
-                    else { //None of the ingredients the user has are low/out of stock
+                    else { //Users ingredients are stocked well, not below stock of 3
                         System.out.println("All the ingredients at your house are in stock and not low in stock!");
                     }
                     String shoppingList = shoppingListScanner.nextLine(); //User input is the shopping list
@@ -40,12 +40,12 @@ public class ShoppingList {
                     System.out.println("Your shopping list:");
                     while (shoppingListReader.hasNextLine()) { //Reading lines of the file
                         String list = shoppingListReader.nextLine();
-                        System.out.println(list); //Prints out shopping list
+                        System.out.println(list); //Prints out shopping list via array
                     }
                     shoppingListReader.close();
 
-                    Boolean shopList = true; //boolean statement for modify the list loop
-                    while (shopList == true) {
+                    boolean shopList = true; //boolean statement for modify the list loop
+                    while (shopList) {
                         System.out.println("Would you like to modify your shopping list? [Y/N]");
                         Scanner modifyShoppingList = new Scanner(System.in);
 

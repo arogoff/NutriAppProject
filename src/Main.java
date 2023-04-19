@@ -13,12 +13,13 @@ public class Main {
         UserUtils.loadUsers();
         System.out.println("Hello 'user', Please choose an option to view data!");
 
-        Boolean run = true;
+        boolean run = true;
         Scanner scanner = new Scanner(System.in);
 
-        User currentUser = null;
+        User currentUser;
+        currentUser = null;
 
-        while (run == true) {
+        while (run) {
 
             try {
 

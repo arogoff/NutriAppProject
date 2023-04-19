@@ -3,7 +3,6 @@ package src;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import src.objs.User;
-import src.utils.UserUtils;
 import static src.objs.ShoppingList.viewShoppingList;
 
 public class NutriAppManager {
@@ -11,15 +10,15 @@ public class NutriAppManager {
     public static void NutriApp(User user) {
         System.out.println("Hello " + user.getUsername() + " , Please choose an option to view data!");
 
-        Boolean run = true;
+        boolean run = true;
         Scanner scanner = new Scanner(System.in);
 
-        while (run == true) {
+        while (run) {
 
             try {
 
                 System.out.println("1 - Set Goal\n2 - Modify Goal\n3 - Track Workout\n4 - Track Meal\n" +
-                        "5 - Add Ingredients\n6 - View Ingredients\n7 - Add Recipie\n8 - Get Recipie\n9 - View Shopping List\n" +
+                        "5 - Add Ingredients\n6 - View Ingredients\n7 - Add Recipe\n8 - Get Recipe\n9 - View Shopping List\n" +
                         "10 - View History\n11 - Logout/Exit");
 
                 int option = scanner.nextInt();
@@ -36,9 +35,9 @@ public class NutriAppManager {
                     System.out.println("Option 5");
                 } else if (option == 6) { //View ingredients
                     System.out.println("Option 6");
-                } else if (option == 7) { //Add recipie
+                } else if (option == 7) { //Add recipe
                     System.out.println("Option 7");
-                } else if (option == 8) { //Get recipie
+                } else if (option == 8) { //Get recipe
                     System.out.println("Option 8");
                 }  else if (option == 9) { //View shopping list
                     viewShoppingList();
