@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import src.objs.User;
+import java.io.File;
+import java.io.IOException;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import src.utils.UserUtils;
 
 public class NutriAppManager {
+
     public static void NutriApp(User user) {
         System.out.println("Hello " + user.getUsername() + " , Please choose an option to view data!");
 
@@ -40,7 +45,7 @@ public class NutriAppManager {
                 } else if (option == 8) { //Get recipie
                     System.out.println("Option 8");
                 }  else if (option == 9) { //View shopping list
-                    System.out.println("Option 10");
+                    viewShoppingList();
                 } else if (option == 10) { //View History
                     System.out.println("Option 11");
                 } else if (option == 11) { //Logout/Exit
