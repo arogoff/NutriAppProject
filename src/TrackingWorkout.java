@@ -1,6 +1,6 @@
 package src;
 import java.time.LocalDateTime;
-
+import src.PersonalHistory;
 public class TrackingWorkout {
     private int totalCalories;
     private int dailyTarget;
@@ -47,6 +47,8 @@ public class TrackingWorkout {
 
         totalCalories += caloriesBurned;
         lastWorkoutTime = LocalDateTime.now();
+
+        PersonalHistory.addWorkout(minutes, intensity, caloriesBurned);
     }
 
     public int getCaloriesBurned() {
