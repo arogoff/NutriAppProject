@@ -16,7 +16,7 @@ public class PersonalHistory {
     public static int totalCalories = 0;
     static ArrayList<String> workouts = new ArrayList<String>();
     static ArrayList<String> meals = new ArrayList<String>();
-    public static String bigString = "";
+    public static String bigString = " ";
     /** The user may browse their personal history including:
          Weight
          Calories consumed vs. target for that day
