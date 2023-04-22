@@ -1,7 +1,7 @@
 package src;
 
 import java.util.*;
-
+import src.PersonalHistory;
 
 /* Suggestions for this file
 * The Meal class should have a method to add recipes to the meal.
@@ -71,6 +71,8 @@ public class TrackingMeal {
         if (consumedCalories > dailyTargetCalories) {
             System.out.println("Warning: Exceeded daily target calories by " + (consumedCalories - dailyTargetCalories));
         }
+        PersonalHistory.addMeal(mealName, calories);
+
     }
 
     // Method to get the calories for a recipe based on its ingredients
