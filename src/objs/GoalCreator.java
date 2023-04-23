@@ -51,12 +51,19 @@ public abstract class GoalCreator {
         answer = true;
         int goalWeight = 0;
         while(answer){
-            System.out.println("What is your goal weight?");
+            System.out.println("What is your goal weight? Your current weight is: " + user.getWeight());
 
             try{
                 goalWeight = reader.nextInt();
 
-                if(goalWeight >= 50 && goalWeight <= 300){
+                if(type.equals("maintain") && goalWeight != Integer.parseInt(user.getWeight())){
+                    System.out.println("You wanted to maintain your weight, yet your goal weight doesn't match your current weight!");
+                }else if(type.equals("lose") && goalWeight >= Integer.parseInt(user.getWeight())){
+                    System.out.println("You wanted to lose weight, yet your goal weight is greater than your current weight!");
+                }else if(type.equals("gain") && goalWeight <= Integer.parseInt(user.getWeight())){
+                    System.out.println("You wanted to gain weight, yet your goal weight is less than your current weight!");
+                }
+                else if(goalWeight >= 50 && goalWeight <= 300){
                     answer = false;
                 }else{
                     System.out.println("Please enter a number between 50 and 300.");
@@ -91,8 +98,6 @@ public abstract class GoalCreator {
     public abstract void setUserGoal(String type, int calorieLimit, int goalWeight);
 
     public void checkWeight(User user){
-        System.out.println(user.getWeight());
-        System.out.println(userGoal.goalWeight);
         if(Integer.parseInt(user.getWeight()) == userGoal.goalWeight){
             System.out.println("You have reached your goal weight! Changing your goal to 'maintain'.");
             userGoal = createGoalType("maintain");
