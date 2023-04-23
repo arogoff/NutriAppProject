@@ -1,5 +1,6 @@
-userName,passwordHash,firstName,lastName,dailyTarget,height,weight,birthDate
-asr8607,1234,alex,rogoff,100,5ft 8,160,11/17/2002
-alex,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,notset,5ft 8in,200,1/1/1001
-admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'08",200,01/01/2001
-test1,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,test,notset,5'08",100,test
+userName,passwordHash,firstName,lastName,dailyTarget,height,weight,goalWeight,birthDate,gender,goalType
+asr8607,1234,alex,rogoff,100,5'8",160,0,11/17/2002,m,maintain
+alex,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,notset,5'8",200,0,1/1/1001,m,maintain
+admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'08",200,0,01/01/2001,m,maintain
+test1,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,test,notset,5'08",100,0,test,f,notset
+alexr,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,2497,6'08",160,0,11/17/2002,m,maintain

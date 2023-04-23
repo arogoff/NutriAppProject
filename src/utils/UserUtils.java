@@ -3,7 +3,11 @@ package src.utils;
 import src.objs.User;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserUtils {
 
@@ -24,7 +28,9 @@ public class UserUtils {
 
             while ((answer = inputFile.readLine()) != null) {
                 String[] user = answer.split(",");
-                userArrayList.add(new User(user[0], user[1], user[2], user[3], user[4], user[5], user[6], user[7]));
+                User user1 = new User(user[0], user[1], user[2], user[3], user[4], user[5], user[6], user[7], user[8], user[9]);
+                user1.setGoalType(user[10]);
+                userArrayList.add(user1);
             }
 
             return userArrayList;
@@ -58,15 +64,15 @@ public class UserUtils {
      * Call doesUserExist() to ensure no duplicate usernames (final check). Create a new User object with the parameters and add them to the users.csv file.
      * Returns User object
      */
-    public static User createUser(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String birthDate){
+    public static User createUser(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String birthDate, String gender){
         if(doesUserExist(username)){
             System.out.println("Error [UserUtils.createUser] ! User already exists!");
         }else if(username != null && passwordHash != null){
-            User newUser = new User(username, passwordHash, firstName, lastName, dailyTarget, height, weight, birthDate);
+            User newUser = new User(username, passwordHash, firstName, lastName, dailyTarget, height, weight, "0", birthDate, gender);
             try {
                 FileWriter fw = new FileWriter("src/databases/users.csv", true);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write(username + "," + passwordHash + "," + firstName+ "," + lastName + "," + dailyTarget + "," + height + "," + weight + "," +birthDate + "\n");
+                bw.write(username + "," + passwordHash + "," + firstName+ "," + lastName + "," + dailyTarget + "," + height + "," + weight + "," + "0" + "," +birthDate + "," + gender + ",notset" + "\n");
                 bw.close();
                 //System.out.println("Successfully wrote to the file.");
             } catch (IOException e) {
@@ -96,5 +102,23 @@ public class UserUtils {
         }
 
         return false;
+    }
+
+    public static void updateUser(User user){
+        try{
+            List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of("src/databases/users.csv"), StandardCharsets.UTF_8));
+
+            for (int i = 0; i < fileContent.size(); i++) {
+                if (fileContent.get(i).split(",")[0].equals(user.getUsername())) {
+                    fileContent.set(i, user.getUsername() + "," + user.getPasswordHash() + "," + user.getFirstName()+ "," + user.getLastName() + "," + user.getDailyTarget() + "," + user.getHeight() + "," + user.getWeight() + "," + user.getGoalWeight() + "," + user.getBirthDate() + "," + user.getGender() + "," + user.getGoalType() +"\n");
+                    break;
+                }
+            }
+
+            Files.write(Path.of("src/databases/users.csv"), fileContent, StandardCharsets.UTF_8);
+        }catch(IOException ioe){
+            System.out.println("Error! [UserUtils.updateUser] ! IOException Occured!");
+        }
+
     }
 }

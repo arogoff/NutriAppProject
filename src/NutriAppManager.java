@@ -1,8 +1,14 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import src.objs.GoalManager;
+import src.objs.Ingredient;
 import src.objs.User;
+import src.utils.LoadIngredients;
+
 import static src.objs.ShoppingList.viewShoppingList;
 
 public class NutriAppManager {
@@ -10,7 +16,15 @@ public class NutriAppManager {
     public static void NutriApp(User user) {
         // load in user's personal history + stock here as we now know what user it is
 
+        // load in the ingredients
+        ArrayList<Ingredient> ingredients = LoadIngredients.readIn();
 
+        // load in the goal/set goalManager up
+        GoalManager goalManager = new GoalManager();
+        // load up the user's goal
+        if(!user.getGoalType().equals("notset")){
+            goalManager.setUserGoal(user.getGoalType(), Integer.parseInt(user.getDailyTarget()), Integer.parseInt(user.getGoalWeight()));
+        }
 
         System.out.println("Hello " + user.getUsername() + " , Please choose an option to view data!");
 
@@ -23,10 +37,10 @@ public class NutriAppManager {
 
                 System.out.println("""
                         1 - Set Goal
-                        2 - Modify Goal
+                        2 - View Goal
                         3 - Track Workout
                         4 - Track Meal
-                        5 - Add Ingredients
+                        5 - View Number of Calories Left in the Day
                         6 - View Ingredients
                         7 - Add Recipe
                         8 - Get Recipe
@@ -38,13 +52,15 @@ public class NutriAppManager {
 
                 if (option == 1) { //Set Goal
                     System.out.println("Option 1");
-                } else if (option == 2) { //Modify goal
+                    goalManager.createGoal(user);
+                } else if (option == 2) { //View goal
                     System.out.println("Option 2");
+                    goalManager.getGoalInfo();
                 } else if (option == 3) { //Track workout
                     System.out.println("Option 3");
                 } else if (option == 4) { //Track Meal
                     System.out.println("Option 4");
-                } else if (option == 5) { //Add ingredients
+                } else if (option == 5) { //View Number of Calories Left in the Day
                     System.out.println("Option 5");
                 } else if (option == 6) { //View ingredients
                     System.out.println("Option 6");

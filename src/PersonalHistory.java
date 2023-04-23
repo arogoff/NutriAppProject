@@ -77,7 +77,7 @@ public class PersonalHistory {
      //Test method to see if PersonalHistory functions as intended.
      public static void test(){
          User nobody = new User("dummy", "OOgswgvRGIaeBR=", "tommy",
-          "danger", "3000", "5ft 8","160", "11/17/2002");
+          "danger", "3000", "5ft 8","160", "11/17/2002", "m", "notset");
           
           TrackingWorkout tracker = new TrackingWorkout(1000, 5, 7, 10);
           tracker.recordWorkout(30, "medium");

@@ -5,10 +5,15 @@ public class CustomGoal extends Goal{
         super(type);
     }
 
+    public CustomGoal(String type, int calorieLimit, int goalWeight){
+        super(type, calorieLimit, goalWeight);
+    }
+
     @Override
     public void createGoal(String height, int weight, int age, String gender) {
-        int ft = Integer.parseInt(height.split("ft ")[0]);
-        int inches = Integer.parseInt(height.split("ft ")[1]);
+        String h = height.replace("\"", "");
+        int ft = Integer.parseInt(h.split("'")[0]);
+        int inches = Integer.parseInt(h.split("'")[1]);
         int inchesTotal = (ft*12) + inches;
         double heightCm = inchesTotal*2.54;
         // here is where the calculation is

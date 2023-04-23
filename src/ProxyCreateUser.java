@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ProxyCreateUser implements CreateUser {
     @Override
-    public User authenticate(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String birthDate) {
+    public User authenticate(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String birthDate, String gender) {
         Scanner reader = new Scanner(System.in);
         RealCreateUser create = new RealCreateUser();
 
@@ -47,7 +47,7 @@ public class ProxyCreateUser implements CreateUser {
                 birthDate = "";
                 boolean dateContinue = true;
                 while(dateContinue){
-                    System.out.print("Enter the your birthdate in the following format 'mm/dd/yyyy': ");
+                    System.out.print("Enter your birthdate in the following format 'mm/dd/yyyy': ");
                     birthDate = reader.nextLine();
 
                     // Finish this
@@ -59,7 +59,7 @@ public class ProxyCreateUser implements CreateUser {
                 height = "";
                 boolean heightContinue = true;
                 while(heightContinue){
-                    System.out.print("Enter the your height in the following format: #'#\" ex: 5'08\": ");
+                    System.out.print("Enter your height in the following format: #'#\" ex: 5'08\": ");
                     height = reader.nextLine();
 
                     String pattern = "^[3-8]{1}\\'([0-9]{1}|0[0-9]{1}|1[0-1]{1})(\\\"|\\s*((1\\/4|1\\/2|3\\/4))\\\")$";
@@ -77,11 +77,40 @@ public class ProxyCreateUser implements CreateUser {
                 }
 
                 // Prompt user for their weight
-                System.out.print("Enter the your weight: ");
-                weight = reader.nextLine();
+                boolean weightContinue = true;
+                while(weightContinue){
+                    System.out.print("Enter your weight: ");
+                    weight = reader.nextLine();
+
+                    try{
+                        if(Integer.parseInt(weight) >= 50 && Integer.parseInt(weight) <= 300){
+                            weightContinue = false;
+                        }else{
+                            System.out.println("Enter a number between 50 and 300.");
+                        }
+                    }catch(NumberFormatException nfe){
+                        System.out.println("Enter a number between 50 and 300.");
+                    }
+
+                }
+
+
+                boolean genderContinue = true;
+                while(genderContinue){
+                    // Prompt user for their weight
+                    System.out.print("Enter your gender: ");
+                    gender = reader.nextLine();
+                    System.out.println(gender);
+                    if(gender.equals("m") || gender.equals("f")){
+                        genderContinue = false;
+                    }else{
+                        System.out.println("Try again. Please enter m for male and f for female.");
+                    }
+                }
+
 
                 // Call the RealCreateUser's authenticate object
-                return create.authenticate(username, passwordHash, firstName, lastName, "notset", height, weight, birthDate );
+                return create.authenticate(username, passwordHash, firstName, lastName, "notset", height, weight, birthDate, gender );
 
             }
 
