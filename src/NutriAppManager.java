@@ -4,6 +4,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import src.objs.User;
 import static src.objs.ShoppingList.viewShoppingList;
+import src.PersonalHistory;
+import src.objs.*;
 
 public class NutriAppManager {
 
@@ -37,6 +39,7 @@ public class NutriAppManager {
                     System.out.println("Option 6");
                 } else if (option == 7) { //Add recipe
                     System.out.println("Option 7");
+                    Recipe.initializeRecipeName();
                 } else if (option == 8) { //Get recipe
                     System.out.println("Option 8");
                 }  else if (option == 9) { //View shopping list
