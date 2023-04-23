@@ -44,6 +44,15 @@ public abstract class Goal {
         return goalWeight;
     }
 
-    // create method to update users.csv file and the user's specified goal
-    // create a method in UserUtils? (probably best bet)
+    public void register(User user){
+
+    }
+
+    public void deregister(User user){
+
+    }
+
+    public void notifyObservers(){
+
+    }
 }

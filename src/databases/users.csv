@@ -1,6 +1,6 @@
 userName,passwordHash,firstName,lastName,dailyTarget,height,weight,goalWeight,birthDate,gender,goalType
 asr8607,1234,alex,rogoff,100,5'8",160,0,11/17/2002,m,maintain
-alex,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,notset,5'8",200,0,1/1/1001,m,maintain
+alex,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,2013,5'8",200,0,1/1/1001,m,lose
 admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'08",200,0,01/01/2001,m,maintain
-test1,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,test,notset,5'08",100,0,test,f,notset
-alexr,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,2497,6'08",160,0,11/17/2002,m,maintain
+test1,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,test,notset,5'08",180,0,test,f,notset
+alexr,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,alex,r,3583,6'08",225,230,11/17/2002,m,gain

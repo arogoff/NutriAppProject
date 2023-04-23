@@ -104,13 +104,17 @@ public class UserUtils {
         return false;
     }
 
+    public static void updateWeight(User user){
+
+    }
+
     public static void updateUser(User user){
         try{
             List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of("src/databases/users.csv"), StandardCharsets.UTF_8));
 
             for (int i = 0; i < fileContent.size(); i++) {
                 if (fileContent.get(i).split(",")[0].equals(user.getUsername())) {
-                    fileContent.set(i, user.getUsername() + "," + user.getPasswordHash() + "," + user.getFirstName()+ "," + user.getLastName() + "," + user.getDailyTarget() + "," + user.getHeight() + "," + user.getWeight() + "," + user.getGoalWeight() + "," + user.getBirthDate() + "," + user.getGender() + "," + user.getGoalType() +"\n");
+                    fileContent.set(i, user.getUsername() + "," + user.getPasswordHash() + "," + user.getFirstName()+ "," + user.getLastName() + "," + user.getDailyTarget() + "," + user.getHeight() + "," + user.getWeight() + "," + user.getGoalWeight() + "," + user.getBirthDate() + "," + user.getGender() + "," + user.getGoalType() );
                     break;
                 }
             }

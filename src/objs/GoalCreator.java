@@ -72,6 +72,7 @@ public abstract class GoalCreator {
         userGoal = createGoalType(type);
         userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
         userGoal.setGoalWeight(goalWeight);
+        user.setGoalWeight(String.valueOf(goalWeight));
         user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
         user.setGoalType(type);
         UserUtils.updateUser(user);
@@ -88,5 +89,35 @@ public abstract class GoalCreator {
     }
 
     public abstract void setUserGoal(String type, int calorieLimit, int goalWeight);
+
+    public void checkWeight(User user){
+        System.out.println(user.getWeight());
+        System.out.println(userGoal.goalWeight);
+        if(Integer.parseInt(user.getWeight()) == userGoal.goalWeight){
+            System.out.println("You have reached your goal weight! Changing your goal to 'maintain'.");
+            userGoal = createGoalType("maintain");
+            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
+            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
+            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
+            user.setGoalType("maintain");
+            UserUtils.updateUser(user);
+        }else if(Integer.parseInt(user.getWeight()) >= userGoal.goalWeight+5){
+            System.out.println("You are over 5lbs above your goal weight! Your goal has been set to 'lose'.");
+            userGoal = createGoalType("lose");
+            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
+            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
+            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
+            user.setGoalType("lose");
+            UserUtils.updateUser(user);
+        }else if(Integer.parseInt(user.getWeight()) <= userGoal.goalWeight-5){
+            System.out.println("You are over 5lbs below your goal weight! Your goal has been set to 'gain'.");
+            userGoal = createGoalType("gain");
+            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
+            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
+            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
+            user.setGoalType("gain");
+            UserUtils.updateUser(user);
+        }
+    }
 
 }
