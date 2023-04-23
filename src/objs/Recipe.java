@@ -60,8 +60,8 @@ public class Recipe extends Food{
     }
 
     public static void saveRecipe() {
-        String bigString = "";
-        bigString += title + "\n" + ingredients + "\n****";
+        String bigString = "Recipe: ";
+        bigString += title + "\n" + ingredients;
 
         for (int i = 0; i < instructions.size(); i++) {
             bigString += "\nStep " + i + ": " + instructions.get(i);
@@ -78,6 +78,44 @@ public class Recipe extends Food{
           }
     }
 
+    public static String getRecipe(){
+        System.out.println("Enter the name of the recipe you'd like to retrieve: ");
+        Scanner scanner = new Scanner(System.in);
+        
+        String recipeName = scanner.nextLine();
+       
+        try {
+            String fullText = "";
+         //   File parentDir = new File("..");
+            File myObj = new File("src/recipes.txt");
+            Scanner myReader = new Scanner(myObj);
+            ArrayList<String> infoDump = new ArrayList<String>();
+            while (myReader.hasNextLine()) {
+              infoDump.add(myReader.nextLine());
+            }
+
+            int index = infoDump.indexOf("Recipe: " + recipeName);
+            myReader.close();
+            if(index != -1){
+                int indexCounter = index+1;
+                while(!infoDump.get(indexCounter).contains("Recipe:")){
+                    fullText += infoDump.get(indexCounter) + "\n";
+                    indexCounter++;
+                } 
+                 return fullText;
+            } else{
+                System.out.println("recipe not found");
+            }
+            
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+        return "Couldn't find recipe for " + recipeName;
+
+    }
+
     public double getRecipeCalories(){
 
         return calories;
@@ -85,7 +123,7 @@ public class Recipe extends Food{
 
     public static void main(String[] args) {
         // System.out.println("In personal history...");
-
+        System.out.println(getRecipe());
        // createRecipe("Cake");
     }
         

@@ -42,6 +42,7 @@ public class NutriAppManager {
                     Recipe.initializeRecipeName();
                 } else if (option == 8) { //Get recipe
                     System.out.println("Option 8");
+                    Recipe.getRecipe();
                 }  else if (option == 9) { //View shopping list
                     viewShoppingList();
                 } else if (option == 10) { //View History
