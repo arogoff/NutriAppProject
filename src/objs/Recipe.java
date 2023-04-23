@@ -24,6 +24,7 @@ public class Recipe extends Food{
     public void createFood() {
 
     }
+    /** Get the intended recipe name from the user input, then send it to the createRecipe method */
     public static void initializeRecipeName() {
 
         System.out.println("Please enter the name of the recipe you would like to create: ");
@@ -33,21 +34,21 @@ public class Recipe extends Food{
         createRecipe(input);
     }
 
-    //hashmap is name of ingredient and then quantity of said event
+    /** Create a recipe object. Take in the name of the recipe, the ingredients + how many, and the instructions. */
     public static void createRecipe(String called){
         title= called;
         
         System.out.println("Create the " + title + " recipe! Enter the ingredients in the format of 'Ingredient name';'quantity'. Type 'exit' to finish.  ");
         Scanner scanner = new Scanner(System.in);
-        
+        //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
         String option = scanner.nextLine();
         while(!option.equals("exit")){
             String things[] = option.split(";");
             ingredients.put(things[0], Double.parseDouble(things[1]));
             option = scanner.nextLine();
         }
-       System.out.println(ingredients);
-     
+      // System.out.println(ingredients);
+     //Take in the steps for the recipe (Saved in arraylist)
         System.out.println("Enter the steps for the recipe one at a time. Enter 'exit' when done. ");
         option = scanner.nextLine();
         while(!option.equals("exit")){
@@ -59,6 +60,7 @@ public class Recipe extends Food{
 
     }
 
+    //save the recipe to recipes.txt
     public static void saveRecipe() {
         String bigString = "Recipe: ";
         bigString += title + "\n" + ingredients;
@@ -77,7 +79,7 @@ public class Recipe extends Food{
             e.printStackTrace();
           }
     }
-
+    //Retrieve a recipe from recipes.txt
     public static String getRecipe(){
         System.out.println("Enter the name of the recipe you'd like to retrieve: ");
         Scanner scanner = new Scanner(System.in);
@@ -120,10 +122,10 @@ public class Recipe extends Food{
 
         return calories;
     }
-
+//this main method is for testing purposes
     public static void main(String[] args) {
         // System.out.println("In personal history...");
-        System.out.println(getRecipe());
+       // System.out.println(getRecipe());
        // createRecipe("Cake");
     }
         
