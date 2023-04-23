@@ -3,6 +3,10 @@ package src.objs;
 public abstract class Goal {
     public String type;
 
+    public int calorieLimit;
+
+    public int goalWeight;
+
     public void setType(String type) {
         this.type = type;
     }
@@ -15,10 +19,25 @@ public abstract class Goal {
         this.type = type;
     }
 
-    public abstract void createGoal();
+    // Calculated using this formula http://www-users.med.cornell.edu/~spon/picu/calc/beecalc.htm
+    public abstract void createGoal(String height, int weight, int age, String gender);
 
-    public abstract String getGoalInfo();
+    public String getGoalInfo() {
+        return "Goal Type: " + getType() + ". Calorie Limit: " + getCalorieLimit();
+    }
 
-    public abstract int getCalorieLimit();
+    public int getCalorieLimit() {
+        return calorieLimit;
+    }
 
+    public void setGoalWeight(int goalWeight) {
+        this.goalWeight = goalWeight;
+    }
+
+    public int getGoalWeight() {
+        return goalWeight;
+    }
+
+    // create method to update users.csv file and the user's specified goal
+    // create a method in UserUtils? (probably best bet)
 }

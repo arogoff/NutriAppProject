@@ -8,6 +8,10 @@ import static src.objs.ShoppingList.viewShoppingList;
 public class NutriAppManager {
 
     public static void NutriApp(User user) {
+        // load in user's personal history + stock here as we now know what user it is
+
+
+
         System.out.println("Hello " + user.getUsername() + " , Please choose an option to view data!");
 
         boolean run = true;
@@ -17,9 +21,18 @@ public class NutriAppManager {
 
             try {
 
-                System.out.println("1 - Set Goal\n2 - Modify Goal\n3 - Track Workout\n4 - Track Meal\n" +
-                        "5 - Add Ingredients\n6 - View Ingredients\n7 - Add Recipe\n8 - Get Recipe\n9 - View Shopping List\n" +
-                        "10 - View History\n11 - Logout/Exit");
+                System.out.println("""
+                        1 - Set Goal
+                        2 - Modify Goal
+                        3 - Track Workout
+                        4 - Track Meal
+                        5 - Add Ingredients
+                        6 - View Ingredients
+                        7 - Add Recipe
+                        8 - Get Recipe
+                        9 - View Shopping List
+                        10 - View History
+                        11 - Logout/Exit""");
 
                 int option = scanner.nextInt();
 
