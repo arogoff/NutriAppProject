@@ -72,13 +72,18 @@ public abstract class GoalCreator {
             reader.nextLine();
         }
 
-
+        if (!answer) {
+            System.out.println("Please enter desired workout time in hours per day (Ex: 2.5");
+            user.workoutTime = reader.nextDouble();
+        }
         userGoal = createGoalType(type);
         userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
         userGoal.setGoalWeight(goalWeight);
         userGoal.register(user);
 
+
         userGoal.notifyObservers(userGoal.getCalorieLimit() + "|" +  type + "|" + goalWeight);
+
     }
 
     public abstract Goal createGoalType(String type);
@@ -91,7 +96,7 @@ public abstract class GoalCreator {
         }
     }
 
-    public abstract void setUserGoal(String type, int calorieLimit, int goalWeight);
+    public abstract void setUserGoal(String type, int calorieLimit, int goalWeight, double workoutTime);
 
     public abstract void checkWeight(User user);
 

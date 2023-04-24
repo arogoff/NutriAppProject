@@ -13,7 +13,7 @@ public class GoalManager extends GoalCreator{
     }
 
     @Override
-    public void setUserGoal(String type, int calorieLimit, int goalWeight) {
+    public void setUserGoal(String type, int calorieLimit, int goalWeight, double workoutTime) {
         switch (type.toLowerCase()) {
             case "maintain" -> userGoal = new MaintainWeightGoal(type, calorieLimit, goalWeight);
             case "lose" -> userGoal = new LoseWeightGoal(type, calorieLimit, goalWeight);

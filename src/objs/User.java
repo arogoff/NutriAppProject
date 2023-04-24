@@ -17,6 +17,8 @@ public class User implements UserObserver{
 
     public String goalType;
 
+    public double workoutTime;
+
     public User(){
 
     }
@@ -31,6 +33,7 @@ public class User implements UserObserver{
         this.goalWeight = goalWeight;
         this.birthDate = birthDate;
         this.gender = gender;
+        this.workoutTime = workoutTime;
     }
 
     public String getGoalType() {
@@ -39,6 +42,12 @@ public class User implements UserObserver{
 
     public void setGoalType(String goalType) {
         this.goalType = goalType;
+    }
+
+    public void setWorkoutTime(double workoutTime) { this.workoutTime = workoutTime; }
+
+    public double getWorkoutTime() {
+        return workoutTime;
     }
 
     public String getGender() {
