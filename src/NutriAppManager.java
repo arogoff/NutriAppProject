@@ -1,6 +1,7 @@
 package src;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class NutriAppManager {
         // load in user's personal history + stock here as we now know what user it is
 
         // load in the ingredients
-        ArrayList<Ingredient> ingredients = LoadIngredients.readIn();
+        HashMap<String, Ingredient> ingredients = LoadIngredients.readIn();
 
         // load in the goal/set goalManager up
         GoalManager goalManager = new GoalManager();
@@ -93,8 +94,8 @@ public class NutriAppManager {
                     System.out.println("Option 6");
                 } else if (option == 7) { //View ingredients
 
-                    for (Ingredient i : ingredients) {
-                        System.out.println(i.getInfo());
+                    for (String i : ingredients.keySet()) {
+                        System.out.println(ingredients.get(i).getInfo());
                     }
                 } else if (option == 8) { //Add recipe
                     System.out.println("Option 8");

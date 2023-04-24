@@ -4,10 +4,11 @@ import src.objs.Ingredient;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class LoadIngredients {
-    public static ArrayList<Ingredient> readIn(){
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+    public static HashMap<String, Ingredient> readIn(){
+        HashMap<String, Ingredient> ingredients = new HashMap<>();
         //^change to map
         try {
             BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/ingredients.csv"));
@@ -19,7 +20,8 @@ public class LoadIngredients {
                 // split the line on a comma if there are no " before the ,
                 // allows strings like "xyz,be",hi to be split into "xyz,be" and hi.
                 //ingredient id = key, ingredient obj = value
-                ingredients.add(new Ingredient(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1)));
+                Ingredient x = new Ingredient(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1));
+                ingredients.put(x.ingNum(), x);
             }
             
             return ingredients;
