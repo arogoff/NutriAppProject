@@ -92,26 +92,6 @@ public class NutriAppManager {
                 } else if (option == 6) { //View Number of Calories Left in the Day
                     System.out.println("Option 6");
                 } else if (option == 7) { //View ingredients
-                            while(true){
-                                System.out.print("Enter your ingredient number: ");
-                                ingredientNumber = scanner.nextLine();
-
-                                try{
-                                    if(Integer.parseInt(newWeight) >= 50 && Integer.parseInt(newWeight) <= 300){
-                                        weightContinue = false;
-                                        user.setWeight(newWeight);
-                                        if(!user.getGoalType().equals("notset")){
-                                            goalManager.checkWeight(user);
-                                        }else{
-                                            UserUtils.updateUser(user);
-                                        }
-                                    }else{
-                                        System.out.println("Enter a number between 50 and 300.");
-                                    }
-                                }catch(NumberFormatException nfe){
-                                    System.out.println("Enter a number between 50 and 300.");
-                                }
-                            }System.out.println("Please enter ingredient number you used.");
 
                     for (Ingredient i : ingredients) {
                         System.out.println(i.getInfo());
