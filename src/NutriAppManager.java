@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import src.objs.GoalManager;
 import src.objs.Ingredient;
+import src.objs.Recipe;
 import src.objs.User;
 import src.utils.LoadIngredients;
 import src.utils.UserUtils;
@@ -97,8 +98,10 @@ public class NutriAppManager {
                     System.out.println("Option 7");
                 } else if (option == 8) { //Add recipe
                     System.out.println("Option 8");
+                    Recipe.initializeRecipeName();
                 } else if (option == 9) { //Get recipe
                     System.out.println("Option 9");
+                    Recipe.getRecipe();
                 }  else if (option == 10) { //View shopping list
                     viewShoppingList();
                 } else if (option == 11) { //View History
