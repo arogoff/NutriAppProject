@@ -9,15 +9,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("Main");
-        LoadIngredients.readIn();
         UserUtils.loadUsers();
         System.out.println("Hello 'user', Please choose an option to view data!");
 
         boolean run = true;
         Scanner scanner = new Scanner(System.in);
 
-        User currentUser;
-        currentUser = null;
+        User currentUser = null;
 
         while (run) {
 
@@ -39,7 +37,7 @@ public class Main {
                 } else if (option == 2) { //Create account function
                     ProxyCreateUser create = new ProxyCreateUser();
 
-                    currentUser = create.authenticate(null, null, null, null, null, null, null, null);
+                    currentUser = create.authenticate(null, null, null, null, null, null, null, null, null);
 
                     if (currentUser != null) {
                         NutriAppManager.NutriApp(currentUser);
