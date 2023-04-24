@@ -59,13 +59,10 @@ public class NutriAppManager {
                 scanner.nextLine();
 
                 if (option == 1) { //Set Goal
-                    System.out.println("Option 1");
                     goalManager.createGoal(user);
                 } else if (option == 2) { //View goal
-                    System.out.println("Option 2");
                     goalManager.getGoalInfo();
                 } else if (option == 3) { //Update Weight
-                    System.out.println("Option 3");
                     String newWeight = "";
                     boolean weightContinue = true;
                     while(weightContinue){
@@ -95,7 +92,10 @@ public class NutriAppManager {
                 } else if (option == 6) { //View Number of Calories Left in the Day
                     System.out.println("Option 6");
                 } else if (option == 7) { //View ingredients
-                    System.out.println("Option 7");
+
+                    for (Ingredient i : ingredients) {
+                        System.out.println(i.getInfo());
+                    }
                 } else if (option == 8) { //Add recipe
                     System.out.println("Option 8");
                     Recipe.initializeRecipeName();
