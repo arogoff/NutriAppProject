@@ -1,58 +1,25 @@
 package src.objs;
 
-public abstract class Goal {
-    public String type;
+public interface Goal{
 
-    public int calorieLimit;
+    void setType(String type);
 
-    public int goalWeight;
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Goal(String type) {
-        this.type = type;
-    }
-
-    public Goal(String type, int calorieLimit, int goalWeight){
-        this.type = type;
-        this.calorieLimit = calorieLimit;
-        this.goalWeight = goalWeight;
-    }
+    String getType();
 
     // Calculated using this formula http://www-users.med.cornell.edu/~spon/picu/calc/beecalc.htm
-    public abstract void createGoal(String height, int weight, int age, String gender);
+    void createGoal(String height, int weight, int age, String gender);
 
-    public String getGoalInfo() {
-        return "Goal Type: " + getType() + ". Calorie Limit: " + getCalorieLimit();
-    }
+    String getGoalInfo();
 
-    public int getCalorieLimit() {
-        return calorieLimit;
-    }
+    int getCalorieLimit();
 
-    public void setGoalWeight(int goalWeight) {
-        this.goalWeight = goalWeight;
-    }
+    void setGoalWeight(int goalWeight);
 
-    public int getGoalWeight() {
-        return goalWeight;
-    }
+    int getGoalWeight();
 
-    public void register(User user){
+    void register(User user);
 
-    }
+    void deregister(User user);
 
-    public void deregister(User user){
-
-    }
-
-    public void notifyObservers(){
-
-    }
+    void notifyObservers(String event);
 }

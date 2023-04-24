@@ -23,9 +23,12 @@ public class NutriAppManager {
 
         // load in the goal/set goalManager up
         GoalManager goalManager = new GoalManager();
+
         // load up the user's goal
         if(!user.getGoalType().equals("notset")){
+            System.out.println(user.getGoalType());
             goalManager.setUserGoal(user.getGoalType(), Integer.parseInt(user.getDailyTarget()), Integer.parseInt(user.getGoalWeight()));
+            goalManager.register(user);
         }
 
         System.out.println("Hello " + user.getUsername() + " , Please choose an option to view data!");
@@ -52,6 +55,7 @@ public class NutriAppManager {
                         12 - Logout/Exit""");
 
                 int option = scanner.nextInt();
+                scanner.nextLine();
 
                 if (option == 1) { //Set Goal
                     System.out.println("Option 1");

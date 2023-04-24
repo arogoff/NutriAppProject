@@ -1,6 +1,8 @@
 package src.objs;
 
-public class User {
+import src.utils.UserUtils;
+
+public class User implements UserObserver{
     public String username;
     public String passwordHash;
     public String firstName;
@@ -101,5 +103,26 @@ public class User {
 
     public String birthDate;
 
+    public void update(String event) {
+        if(event.split("\\|").length == 2){
+            setDailyTarget(event.split("\\|")[0]);
+            setGoalType(event.split("\\|")[1]);
+
+            if(getGoalType().equals("gain")){
+                System.out.println("You are over 5lbs below your goal weight of " + getGoalWeight() +"lbs! Your goal has been set to 'gain'.");
+            }else if(getGoalType().equals("lose")){
+                System.out.println("You are over 5lbs above your goal weight of " + getGoalWeight() +"lbs! Your goal has been set to 'gain'.");
+            }else{
+                System.out.println("You have reached your goal weight of " + getGoalWeight() +"lbs! Changing your goal to 'maintain'.");
+            }
+        }else{
+            setDailyTarget(event.split("\\|")[0]);
+            setGoalType(event.split("\\|")[1]);
+            setGoalWeight(event.split("\\|")[2]);
+            System.out.println("Your goal has been set to " + getGoalType() + ". Your goal weight is " + getGoalWeight() + "lbs with a daily target of " + getDailyTarget() + " calories.");
+        }
+
+        UserUtils.updateUser(this);
+    }
 }
 

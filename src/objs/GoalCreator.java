@@ -1,7 +1,5 @@
 package src.objs;
 
-import src.utils.UserUtils;
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -23,28 +21,27 @@ public abstract class GoalCreator {
                         5 - Exit""");
             String ans = reader.nextLine();
 
-            switch(ans){
-                case "1":
-                    type="maintain";
+            switch (ans) {
+                case "1" -> {
+                    type = "maintain";
                     answer = false;
-                    break;
-                case "2":
-                    type="gain";
+                }
+                case "2" -> {
+                    type = "gain";
                     answer = false;
-                    break;
-                case "3":
-                    type="lose";
+                }
+                case "3" -> {
+                    type = "lose";
                     answer = false;
-                    break;
-                case "4":
-                    type="custom";
+                }
+                case "4" -> {
+                    type = "custom";
                     answer = false;
-                    break;
-                case "5":
+                }
+                case "5" -> {
                     return;
-                default:
-                    System.out.println("Please enter a number between 1 and 5!");
-                    break;
+                }
+                default -> System.out.println("Please enter a number between 1 and 5!");
             }
         }
 
@@ -79,10 +76,9 @@ public abstract class GoalCreator {
         userGoal = createGoalType(type);
         userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
         userGoal.setGoalWeight(goalWeight);
-        user.setGoalWeight(String.valueOf(goalWeight));
-        user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
-        user.setGoalType(type);
-        UserUtils.updateUser(user);
+        userGoal.register(user);
+
+        userGoal.notifyObservers(userGoal.getCalorieLimit() + "|" +  type + "|" + goalWeight);
     }
 
     public abstract Goal createGoalType(String type);
@@ -97,32 +93,6 @@ public abstract class GoalCreator {
 
     public abstract void setUserGoal(String type, int calorieLimit, int goalWeight);
 
-    public void checkWeight(User user){
-        if(Integer.parseInt(user.getWeight()) == userGoal.goalWeight){
-            System.out.println("You have reached your goal weight! Changing your goal to 'maintain'.");
-            userGoal = createGoalType("maintain");
-            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
-            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
-            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
-            user.setGoalType("maintain");
-            UserUtils.updateUser(user);
-        }else if(Integer.parseInt(user.getWeight()) >= userGoal.goalWeight+5){
-            System.out.println("You are over 5lbs above your goal weight! Your goal has been set to 'lose'.");
-            userGoal = createGoalType("lose");
-            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
-            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
-            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
-            user.setGoalType("lose");
-            UserUtils.updateUser(user);
-        }else if(Integer.parseInt(user.getWeight()) <= userGoal.goalWeight-5){
-            System.out.println("You are over 5lbs below your goal weight! Your goal has been set to 'gain'.");
-            userGoal = createGoalType("gain");
-            userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
-            userGoal.setGoalWeight(Integer.parseInt(user.getGoalWeight()));
-            user.setDailyTarget(String.valueOf(userGoal.getCalorieLimit()));
-            user.setGoalType("gain");
-            UserUtils.updateUser(user);
-        }
-    }
+    public abstract void checkWeight(User user);
 
 }

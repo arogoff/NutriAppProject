@@ -104,10 +104,6 @@ public class UserUtils {
         return false;
     }
 
-    public static void updateWeight(User user){
-
-    }
-
     public static void updateUser(User user){
         try{
             List<String> fileContent = new ArrayList<>(Files.readAllLines(Path.of("src/databases/users.csv"), StandardCharsets.UTF_8));
