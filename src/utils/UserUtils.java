@@ -7,19 +7,22 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class UserUtils {
 
     // userArrayList - Holds all user objects from users.csv
-    public static ArrayList<User> userArrayList = new ArrayList<>();
-
+    public static HashMap<String, User> userArrayList = new HashMap<String, User>();
+    //need to edit doesuserexit
+    //need to edit loaduser
     /*
      * Method loadUsers()
      * Read in and create a user profile for everyone listed in users.csv. Attach each user object to the userArrayList above.
      * no return
      */
-    public static ArrayList<User> loadUsers(){
+    public static HashMap<String,User> loadUsers(){
         try {
             BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/users.csv"));
 
@@ -30,7 +33,7 @@ public class UserUtils {
                 String[] user = answer.split(",");
                 User user1 = new User(user[0], user[1], user[2], user[3], user[4], user[5], user[6], user[7], user[8], user[9]);
                 user1.setGoalType(user[10]);
-                userArrayList.add(user1);
+                userArrayList.put(user1.username, user1);
             }
 
             return userArrayList;
@@ -49,13 +52,7 @@ public class UserUtils {
      * Returns User object
      */
     public static User getUser(String userName){
-        for(User u : userArrayList){
-            if(u.getUsername().equals(userName)){
-                return u;
-            }
-        }
-
-        return null;
+        return userArrayList.get(userName);
     }
 
     /*
@@ -80,7 +77,7 @@ public class UserUtils {
                 e.printStackTrace();
             }
             //write user to users.csv
-            userArrayList.add(newUser);
+            userArrayList.put(newUser.username,newUser);
             return newUser;
         }else if(username.equals(null) || passwordHash.equals(null)){
             System.out.println("Error [UserUtils.createUser] ! Username is null and/or passwordHash is null!");
@@ -95,13 +92,7 @@ public class UserUtils {
      * Returns boolean value
      */
     public static boolean doesUserExist(String userName){
-        for(User u : userArrayList){
-            if(u.getUsername().equals(userName)){
-                return true;
-            }
-        }
-
-        return false;
+        return userArrayList.containsKey(userName);
     }
 
     public static void updateUser(User user){

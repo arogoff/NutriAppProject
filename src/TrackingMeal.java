@@ -2,6 +2,7 @@ package src;
 
 import java.util.*;
 import src.PersonalHistory;
+
 import src.objs.*;
 /* Suggestions for this file
 * The Meal class should have a method to add recipes to the meal.
@@ -48,6 +49,7 @@ public class TrackingMeal {
 
     // Method to prepare a meal and deduct ingredients and calories from stock and daily target, respectively
     public void prepareMeal(String mealName) {
+        
         List<String> recipes = mealRecipes.get(mealName);
         int calories = 0;
         for (String recipe : recipes) {
