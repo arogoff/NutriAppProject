@@ -28,7 +28,7 @@ public class NutriAppManager {
         // load up the user's goal
         if(!user.getGoalType().equals("notset")){
             System.out.println(user.getGoalType());
-            goalManager.setUserGoal(user.getGoalType(), Integer.parseInt(user.getDailyTarget()), Integer.parseInt(user.getGoalWeight()));
+            goalManager.setUserGoal(user.getGoalType(), Integer.parseInt(user.getDailyTarget()), Integer.parseInt(user.getGoalWeight()), user.getWorkoutTime());
             goalManager.register(user);
         }
 
@@ -108,7 +108,7 @@ public class NutriAppManager {
                     System.out.println("Option 11");
                 } else if (option == 12) { //Logout/Exit
                     run = false;
-                    System.out.println("Exit");
+                    System.exit(0);
                 } else {
                     System.out.println("Invalid option entered, enter a number 1-12 to view data.");
                 }

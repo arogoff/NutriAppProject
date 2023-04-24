@@ -62,6 +62,8 @@ public abstract class GoalCreator {
                 }
                 else if(goalWeight >= 50 && goalWeight <= 300){
                     answer = false;
+                    System.out.println("Please enter desired workout time in hours per day (Ex: 2.5");
+                    user.setWorkoutTime(user.workoutTime);
                 }else{
                     System.out.println("Please enter a number between 50 and 300.");
                 }
@@ -72,13 +74,14 @@ public abstract class GoalCreator {
             reader.nextLine();
         }
 
-
         userGoal = createGoalType(type);
         userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
         userGoal.setGoalWeight(goalWeight);
         userGoal.register(user);
 
+
         userGoal.notifyObservers(userGoal.getCalorieLimit() + "|" +  type + "|" + goalWeight);
+
     }
 
     public abstract Goal createGoalType(String type);
@@ -91,7 +94,7 @@ public abstract class GoalCreator {
         }
     }
 
-    public abstract void setUserGoal(String type, int calorieLimit, int goalWeight);
+    public abstract void setUserGoal(String type, int calorieLimit, int goalWeight, double workoutTime);
 
     public abstract void checkWeight(User user);
 

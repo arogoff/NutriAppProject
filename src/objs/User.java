@@ -17,10 +17,12 @@ public class User implements UserObserver{
 
     public String goalType;
 
+    public double workoutTime;
+
     public User(){
 
     }
-    public User(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String goalWeight, String birthDate, String gender){
+    public User(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String goalWeight, String birthDate, String gender, double workoutTime){
         this.username = username;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
@@ -31,6 +33,7 @@ public class User implements UserObserver{
         this.goalWeight = goalWeight;
         this.birthDate = birthDate;
         this.gender = gender;
+        this.workoutTime = workoutTime;
     }
 
     public String getGoalType() {
@@ -39,6 +42,12 @@ public class User implements UserObserver{
 
     public void setGoalType(String goalType) {
         this.goalType = goalType;
+    }
+
+    public void setWorkoutTime(double workoutTime) { this.workoutTime = workoutTime; }
+
+    public double getWorkoutTime() {
+        return workoutTime;
     }
 
     public String getGender() {

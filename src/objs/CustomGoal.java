@@ -8,16 +8,19 @@ public class CustomGoal implements Goal{
     public int calorieLimit;
 
     public int goalWeight;
+
+    public double workoutTime;
     public ArrayList<User> observers = new ArrayList<>();
 
     public CustomGoal(String type) {
         this.type = type;
     }
 
-    public CustomGoal(String type, int calorieLimit, int goalWeight){
+    public CustomGoal(String type, int calorieLimit, int goalWeight, double workoutTime){
         this.type = type;
         this.calorieLimit = calorieLimit;
         this.goalWeight = goalWeight;
+        this.workoutTime = workoutTime;
     }
 
     @Override
@@ -59,6 +62,17 @@ public class CustomGoal implements Goal{
     public void setGoalWeight(int goalWeight) {
         this.goalWeight = goalWeight;
     }
+
+    @Override
+    public void setWorkoutTime(double workoutTime) {
+        this.workoutTime = workoutTime;
+    }
+
+    @Override
+    public double getWorkoutTime() {
+        return workoutTime;
+    }
+
 
     @Override
     public int getGoalWeight() {
