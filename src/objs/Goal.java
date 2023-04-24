@@ -15,10 +15,6 @@ public interface Goal{
 
     void setGoalWeight(int goalWeight);
 
-    void setWorkoutTime(double workoutTime);
-
-    double getWorkoutTime();
-
     int getGoalWeight();
 
     void register(User user);

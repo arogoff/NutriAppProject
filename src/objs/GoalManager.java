@@ -18,7 +18,7 @@ public class GoalManager extends GoalCreator{
             case "maintain" -> userGoal = new MaintainWeightGoal(type, calorieLimit, goalWeight);
             case "lose" -> userGoal = new LoseWeightGoal(type, calorieLimit, goalWeight);
             case "gain" -> userGoal = new GainWeightGoal(type, calorieLimit, goalWeight);
-            case "custom" -> userGoal = new CustomGoal(type, calorieLimit, goalWeight, workoutTime);
+            case "custom" -> userGoal = new CustomGoal(type, calorieLimit, goalWeight);
             default -> {
             }
         }
