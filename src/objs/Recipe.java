@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Recipe extends Food{
     public static String title;
-    public static double calories;
+    public static double calories = 0;
     public static HashMap<String, Double> ingredients = new HashMap<String, Double>();
     public static ArrayList<String> instructions = new ArrayList<String>();
 /**
@@ -42,6 +42,7 @@ public class Recipe extends Food{
         Scanner scanner = new Scanner(System.in);
         //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
         String option = scanner.nextLine();
+        //change to only take in ingredient id + append username to top of file
         while(!option.equals("exit")){
             String things[] = option.split(";");
             ingredients.put(things[0], Double.parseDouble(things[1]));
