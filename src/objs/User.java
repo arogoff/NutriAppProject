@@ -22,7 +22,7 @@ public class User implements UserObserver{
     public User(){
 
     }
-    public User(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String goalWeight, String birthDate, String gender, double workoutTime){
+    public User(String username, String passwordHash, String firstName, String lastName, String dailyTarget, String height, String weight, String goalWeight, String birthDate, String gender){
         this.username = username;
         this.passwordHash = passwordHash;
         this.firstName = firstName;
