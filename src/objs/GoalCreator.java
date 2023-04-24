@@ -6,7 +6,7 @@ import java.util.Scanner;
 public abstract class GoalCreator {
     public Goal userGoal;
     public void createGoal(User user){
-        // String type, String height, int weight, int age, String gender, int goalWeight
+        // String type, String height, int weight, int age, String gender, int goalWeight, double workoutTime
         Scanner reader = new Scanner(System.in);
 
         boolean answer = true;
@@ -37,6 +37,8 @@ public abstract class GoalCreator {
                 case "4" -> {
                     type = "custom";
                     answer = false;
+                    System.out.println("Please enter desired workout time in hours per day (Ex: 2.5");
+                    user.workoutTime = reader.nextDouble();
                 }
                 case "5" -> {
                     return;
@@ -72,10 +74,6 @@ public abstract class GoalCreator {
             reader.nextLine();
         }
 
-        if (!answer) {
-            System.out.println("Please enter desired workout time in hours per day (Ex: 2.5");
-            user.workoutTime = reader.nextDouble();
-        }
         userGoal = createGoalType(type);
         userGoal.createGoal(user.getHeight(), Integer.parseInt(user.getWeight()), user.getAge(), user.getGender());
         userGoal.setGoalWeight(goalWeight);
