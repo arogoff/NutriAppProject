@@ -3,6 +3,8 @@ package src.objs;
 import src.objs.Recipe;
 import java.util.*;
 
+import src.PersonalHistory;
+import src.objs.*;
 
 public class Meal extends Food {
     
@@ -18,8 +20,17 @@ public class Meal extends Food {
 
     }
  
-    
+    public void addRecipe(Recipe recipe) {
+       // recipeIngredients.put(recipeName, ingredients);
+        for (String ingredient : recipe.ingredients.keySet()) {
+            // If the ingredient is not already in stock, add it with a quantity of 0
+       
+        }
+       
+       
+    }
 
+    
     
 
 }
