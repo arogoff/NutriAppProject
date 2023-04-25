@@ -1,4 +1,4 @@
 userName,passwordHash,firstName,lastName,dailyTarget,height,weight,goalWeight,birthDate,gender,goalType
 admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'8",150,0,1/20/2000,m,notset
 testuser,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,user,notset,5'08",190,0,01/01/2000,f,notset
-bob,pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=,bobby,mam,notset,5'10",233,0,08/23/2004,m,notset
+bob,pmWkWSBCL51Bfkhn79xPuKBKHz//H6B+mY6G9/eieuM=,bobby,mam,2291,5'10",233,100,08/23/2004,m,lose

@@ -11,13 +11,15 @@ Recipe: Angel Cake
 1.0 "BUTTER,WITH SALT"
 8.0 "CHEESE,CHESHIRE"
 3.0 "DATES,MEDJOOL"
-
+END OF INGREDIENTS
 Step 0: chop up dates
 Step 1: churn butter
 Step 2: stir violently
+END OF RECIPE
 Recipe: Stir Fry
 2.0 "NOODLES,EGG,DRY,UNENR"
 1.0 "NOODLES,EGG,UNENR,CKD,WO/ ADDED SALT"
-
+END OF INGREDIENTS
 Step 0: mix everything up
 Step 1: freeze for 10 hours
+END OF RECIPE

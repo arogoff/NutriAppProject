@@ -1,5 +1,6 @@
 package src;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
@@ -90,6 +91,7 @@ public class NutriAppManager {
                     }
                 }else if (option == 4) { //Track workout
                     System.out.println("Option 4");
+                    TrackingWorkout.workoutVisual(user);
                 } else if (option == 5) { //Track Meal
                     System.out.println("Option 5");
                     System.out.println("""
@@ -102,7 +104,7 @@ public class NutriAppManager {
                     int input = scan.nextInt();
                     if(input == 10 ){ //create meal
                         TrackingMeal.createMeal(user1);
-                    } else if (input == 11) {
+                    } else if (input == 11) { //prepare meal
                         TrackingMeal.mealsExist(user1);
                     } else {
                         System.out.println("Sorry, that's not an option.");
@@ -160,14 +162,16 @@ public class NutriAppManager {
                         }
                     }
                 }else if (option == 10) { //Add recipe
-                    Recipe.initializeRecipeName(user1);
+                    Recipe.initializeRecipeName(user);
                 } else if (option == 11) { //Get recipe
                     Recipe.getRecipe();
                 }  else if (option == 12) { //View shopping list
                     viewShoppingList(ingredients, user.getUsername());
                 } else if (option == 13) { //View History
-                    System.out.println("Option 11");
+                    System.out.println("Option 13");
+                    PersonalHistory.displayHistory(user);
                 } else if (option == 14) { //Logout/Exit
+                    PersonalHistory.recordHistory(user);
                     run = false;
                 } else {
                     System.out.println("Invalid option entered, enter a number 1-12 to view data.");
@@ -177,6 +181,9 @@ public class NutriAppManager {
             catch (InputMismatchException ime) {
                 System.out.println("Invalid option entered, enter a number 1-11 to view data.");
                 scanner.nextLine();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
             }
         }
     }

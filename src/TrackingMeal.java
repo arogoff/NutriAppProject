@@ -19,13 +19,13 @@ import src.objs.*;
 public class TrackingMeal {
 
     // Define variables to track meals, recipes, and ingredients
-    private static Map<String, List<Recipe>> meals;
+    private static Map<String, List<Recipe>> meals = new HashMap<>();
     private Map<String, List<String>> recipeIngredients;
     public static ArrayList<Recipe> recipes = new ArrayList<>();
-    
-    private Map<String, Integer> ingredientStock;
-    private int dailyTargetCalories;
-    private int consumedCalories;
+    public static boolean canMakeMeals = false;
+    private static Map<String, Integer> ingredientStock;
+    private static int dailyTargetCalories;
+    private static int consumedCalories;
 
     // Constructor to initialize variables
     public TrackingMeal(int dailyTargetCalories) {
@@ -49,7 +49,7 @@ public class TrackingMeal {
         try {
             String fullText = "";
         //   File parentDir = new File("..");
-            File myObj = new File("src/recipes.txt");
+            File myObj = new File("src\\databases\\recipes.txt");
             FileReader fr = new FileReader(myObj);  //Creation of File Reader object
             BufferedReader br = new BufferedReader(fr); 
             Scanner myReader = new Scanner(myObj);
@@ -63,6 +63,9 @@ public class TrackingMeal {
             
             }
             myReader.close();
+            if(infoDump.isEmpty()){
+                return "You don't have any recipes to create a meal with!";
+            }
             String bigString = "You have the following recipes:\n";
             for (String string : infoDump) {
                 bigString += string + "\n";
@@ -75,10 +78,15 @@ public class TrackingMeal {
             List<Recipe> recipesToAdd = new ArrayList<>();
             while(!option.equals("exit")){
                recipesToAdd.add(Recipe.getRecipeForMeal(option));
+               System.out.println("Recipe added!");
                // ingredientAmt.put(things[0], Double.parseDouble(things[1]));
                 option = scanner.nextLine();
             }
-
+            System.out.println("Please enter a name for this meal: ");
+            option = scanner.nextLine();
+            meals.put(option, recipesToAdd);
+            System.out.println("Recipe added!");
+            canMakeMeals = true;
             return bigString;
     } catch (FileNotFoundException e) {
         System.out.println("An error occurred.");
@@ -93,6 +101,21 @@ public class TrackingMeal {
     }
     //check if the user's personal history has prepared any meals before
     public static String mealsExist(User anon){
+        
+        //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
+      
+        try {
+            if(PersonalHistory.mealsExist(anon) != null){
+                canMakeMeals = true;
+                Scanner scanner = new Scanner(System.in);
+                System.out.println("What meal do you want?");
+                String option = scanner.nextLine();
+                prepareMeal(option);
+            }
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
        // PersonalHistory.mealsExist(anon);
         return null;
@@ -122,7 +145,7 @@ public class TrackingMeal {
     }
 
     // Method to prepare a meal and deduct ingredients and calories from stock and daily target, respectively
-    public String prepareMeal(String mealName) {
+    public static String prepareMeal(String mealName) {
         
         List<Recipe> recipes = meals.get(mealName);
         int calories = 0;

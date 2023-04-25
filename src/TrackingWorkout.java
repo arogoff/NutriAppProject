@@ -1,13 +1,16 @@
 package src;
 import java.time.LocalDateTime;
+import java.util.Scanner;
+
 import src.PersonalHistory;
+import src.objs.User;
 public class TrackingWorkout {
-    private int totalCalories;
+    private static int totalCalories;
     private int dailyTarget;
-    private int lowIntensity;
-    private int mediumIntensity;
-    private int highIntensity;
-    private LocalDateTime lastWorkoutTime;
+    private static int lowIntensity;
+    private static int mediumIntensity;
+    private static int highIntensity;
+    private static LocalDateTime lastWorkoutTime;
 
     public TrackingWorkout(int dailyTarget, int lowIntensity, int mediumIntensity, int highIntensity) {
         this.dailyTarget = dailyTarget;
@@ -34,7 +37,7 @@ public class TrackingWorkout {
     * suggestWorkout(): suggests a workout to burn off excess calories, based on the user's previously recorded workouts and intensity levels
     * getLastWorkoutTime(): returns the date and time of the last recorded workout
     * */
-    public void recordWorkout(int minutes, String intensity) {
+    public static void recordWorkout(User anon,int minutes, String intensity) {
         int caloriesBurned = 0;
 
         if (intensity.equalsIgnoreCase("low")) {
@@ -48,7 +51,16 @@ public class TrackingWorkout {
         totalCalories += caloriesBurned;
         lastWorkoutTime = LocalDateTime.now();
 
-        PersonalHistory.addWorkout(minutes, intensity, caloriesBurned);
+        PersonalHistory.addWorkout(anon, minutes, intensity, caloriesBurned);
+    }
+
+    public static void workoutVisual(User anon){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the duration of your workout and the intensity in this format: intensity;minutes");
+        String option = scanner.nextLine();
+        
+        String[] info = option.split(";");
+        recordWorkout(anon, Integer.parseInt(info[1]), info[0]);
     }
 
     public int getCaloriesBurned() {
@@ -86,7 +98,7 @@ public class TrackingWorkout {
         TrackingWorkout tracker = new TrackingWorkout(1000, 5, 7, 10);
 
         // Record a workout of 30 minutes at medium intensity
-        tracker.recordWorkout(30, "medium");
+       // tracker.recordWorkout(30, "medium");
 
         // Display the total calories burned and remaining calories
         System.out.println("Total calories burned: " + tracker.getCaloriesBurned());
