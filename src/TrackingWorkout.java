@@ -41,11 +41,11 @@ public class TrackingWorkout {
         int caloriesBurned = 0;
 
         if (intensity.equalsIgnoreCase("low")) {
-            caloriesBurned = minutes * lowIntensity;
+            caloriesBurned = minutes * 15;
         } else if (intensity.equalsIgnoreCase("medium")) {
-            caloriesBurned = minutes * mediumIntensity;
+            caloriesBurned = minutes * 20;
         } else if (intensity.equalsIgnoreCase("high")) {
-            caloriesBurned = minutes * highIntensity;
+            caloriesBurned = minutes * 25;
         }
 
         totalCalories += caloriesBurned;

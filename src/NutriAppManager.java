@@ -49,15 +49,14 @@ public class NutriAppManager {
                         3 - Update Weight
                         4 - Track Workout
                         5 - Track Meal
-                        6 - View Number of Calories Left in the Day
-                        7 - View All Ingredients
-                        8 - View Ingredient Info
-                        9 - Update Ingredient Stock
-                        10 - Add Recipe
-                        11 - Get Recipe
-                        12 - View Shopping List
-                        13 - View History
-                        14 - Logout/Exit""");
+                        5 - View All Ingredients
+                        6 - View Ingredient Info
+                        7 - Update Ingredient Stock
+                        9 - Add Recipe
+                        10 - Get Recipe
+                        11 - View Shopping List
+                        12 - View History
+                        13 - Logout/Exit""");
 
                 int option = scanner.nextInt();
                 scanner.nextLine();
@@ -90,10 +89,8 @@ public class NutriAppManager {
                         }
                     }
                 }else if (option == 4) { //Track workout
-                    System.out.println("Option 4");
                     TrackingWorkout.workoutVisual(user);
                 } else if (option == 5) { //Track Meal
-                    System.out.println("Option 5");
                     System.out.println("""
                         What would you like to do today?
                             10 - Create Meal
@@ -109,13 +106,11 @@ public class NutriAppManager {
                     } else {
                         System.out.println("Sorry, that's not an option.");
                     }
-                } else if (option == 6) { //View Number of Calories Left in the Day
-                    System.out.println("Option 6");
-                } else if (option == 7) { //View all ingredients
+                }else if (option == 6) { //View all ingredients
                     for (String i : ingredients.keySet()) {
                         System.out.println(ingredients.get(i).getInfo());
                     }
-                } else if (option == 8) {
+                } else if (option == 7) {
                     boolean repeat = true;
 
                     while(repeat) {
@@ -129,7 +124,7 @@ public class NutriAppManager {
                             System.out.println("Ingredient ID does not exist");
                         }
                     }
-                }else if (option == 9) {
+                }else if (option == 8) {
                     boolean repeat = true;
 
                     while(repeat) {
@@ -161,25 +156,24 @@ public class NutriAppManager {
                             System.out.println("Ingredient ID does not exist");
                         }
                     }
-                }else if (option == 10) { //Add recipe
+                }else if (option == 9) { //Add recipe
                     Recipe.initializeRecipeName(user);
-                } else if (option == 11) { //Get recipe
+                } else if (option == 10) { //Get recipe
                     Recipe.getRecipe();
-                }  else if (option == 12) { //View shopping list
+                }  else if (option == 11) { //View shopping list
                     viewShoppingList(ingredients, user.getUsername());
-                } else if (option == 13) { //View History
-                    System.out.println("Option 13");
+                } else if (option == 12) { //View History
                     PersonalHistory.displayHistory(user);
-                } else if (option == 14) { //Logout/Exit
+                } else if (option == 13) { //Logout/Exit
                     PersonalHistory.recordHistory(user);
                     run = false;
                 } else {
-                    System.out.println("Invalid option entered, enter a number 1-12 to view data.");
+                    System.out.println("Invalid option entered, enter a number 1-13 to view data.");
                 }
 
             }
             catch (InputMismatchException ime) {
-                System.out.println("Invalid option entered, enter a number 1-11 to view data.");
+                System.out.println("Invalid option entered, enter a number 1-13 to view data.");
                 scanner.nextLine();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
