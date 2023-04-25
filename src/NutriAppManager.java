@@ -145,13 +145,11 @@ public class NutriAppManager {
                         }
                     }
                 }else if (option == 10) { //Add recipe
-                    System.out.println("Option 8");
                     Recipe.initializeRecipeName();
                 } else if (option == 11) { //Get recipe
-                    System.out.println("Option 9");
                     Recipe.getRecipe();
                 }  else if (option == 12) { //View shopping list
-                    viewShoppingList();
+                    viewShoppingList(ingredients, user.getUsername());
                 } else if (option == 13) { //View History
                     System.out.println("Option 11");
                 } else if (option == 14) { //Logout/Exit
