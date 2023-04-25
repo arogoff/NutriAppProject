@@ -33,7 +33,7 @@ public class User implements UserObserver{
         this.goalWeight = goalWeight;
         this.birthDate = birthDate;
         this.gender = gender;
-        this.workoutTime = workoutTime;
+        this.goalType="notset";
     }
 
     public String getGoalType() {

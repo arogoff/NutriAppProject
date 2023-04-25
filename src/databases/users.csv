@@ -1,3 +1,3 @@
 userName,passwordHash,firstName,lastName,dailyTarget,height,weight,goalWeight,birthDate,gender,goalType
-admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'08",170,0,02/11/2002,m,notset
-emc9208,j0NDRmSPa5bfid2pAcUXaxCm2Dlh3TwayItZstwyeqQ=,Eric,C,notset,5'08",170,0,02/11/2002,m,notset
+admin,jGl25bVBBBW96Qi9Te4V37Fnqchz/Eu4qB9vKrRIqRg=,admin,admin,notset,5'8",150,0,1/20/2000,m,notset
+testuser,XohImNooBHFR0OVvjcYpJ3NgPQ1qq73WKhHvch0VQtg=,test,user,notset,5'08",190,0,01/01/2000,f,notset
