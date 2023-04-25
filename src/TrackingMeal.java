@@ -20,12 +20,12 @@ public class TrackingMeal {
 
     // Define variables to track meals, recipes, and ingredients
     private static Map<String, List<Recipe>> meals = new HashMap<>();
-    private Map<String, List<String>> recipeIngredients;
+    private Map<String, List<String>> recipeIngredients = new HashMap<>();
     public static ArrayList<Recipe> recipes = new ArrayList<>();
-    public static boolean canMakeMeals = false;
-    private static Map<String, Integer> ingredientStock;
+    
+    private static Map<String, Integer> ingredientStock = new HashMap<String, Integer>() ;
     private static int dailyTargetCalories;
-    private static int consumedCalories;
+    private static int consumedCalories = 0;
 
     // Constructor to initialize variables
     public TrackingMeal(int dailyTargetCalories) {
@@ -86,7 +86,7 @@ public class TrackingMeal {
             option = scanner.nextLine();
             meals.put(option, recipesToAdd);
             System.out.println("Recipe added!");
-            canMakeMeals = true;
+           
             return bigString;
     } catch (FileNotFoundException e) {
         System.out.println("An error occurred.");
@@ -104,18 +104,23 @@ public class TrackingMeal {
         
         //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
       
-        try {
-            if(PersonalHistory.mealsExist(anon) != null){
-                canMakeMeals = true;
+       
+            if(!meals.isEmpty()){
+               
                 Scanner scanner = new Scanner(System.in);
                 System.out.println("What meal do you want?");
                 String option = scanner.nextLine();
-                prepareMeal(option);
+                if(meals.containsKey(option)){
+                    prepareMeal(option);
+                } else{
+                    System.out.println("That meal can't be found. Try making a new one.");
+                    createMeal(anon);
+                }
+                
+            } else{
+                System.out.println("You need to create meals before you can prepare them!");
             }
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+       
 
        // PersonalHistory.mealsExist(anon);
         return null;

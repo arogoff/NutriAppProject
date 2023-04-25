@@ -103,9 +103,9 @@ public class NutriAppManager {
         
                     int input = scan.nextInt();
                     if(input == 10 ){ //create meal
-                        TrackingMeal.createMeal(user1);
+                        TrackingMeal.createMeal(user);
                     } else if (input == 11) { //prepare meal
-                        TrackingMeal.mealsExist(user1);
+                        TrackingMeal.mealsExist(user);
                     } else {
                         System.out.println("Sorry, that's not an option.");
                     }

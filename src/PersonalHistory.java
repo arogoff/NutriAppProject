@@ -163,7 +163,7 @@ public class PersonalHistory {
         String workString= "<";
         for (String exercise : workouts) {
             workString += exercise + " | ";
-            System.out.println("going into databsse: " + exercise);
+          //  System.out.println("going into databsse: " + exercise);
         }
         workString+= ">";
         try {
