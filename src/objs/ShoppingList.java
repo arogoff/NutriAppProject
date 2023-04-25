@@ -16,14 +16,14 @@ public class ShoppingList {
                     FileWriter myWriter = new FileWriter("shoppingList.txt");
                     Scanner shoppingListScanner = new Scanner(System.in);
                     System.out.println("Write your shopping list here, press enter when you're done: ");
-                    if (ITEM.getStock() < 3) { //Adds to shopping list if any ingredient in their house is low/out of stock
-                        System.out.println("" + ITEM.getStock() + "\n");
-                    }
-                    else { //Users ingredients are stocked well, not below stock of 3
-                        System.out.println("All the ingredients at your house are in stock and not low in stock!");
-                    }
+                    //if (ITEM.getStock() < 3) { //Adds to shopping list if any ingredient in their house is low/out of stock
+                        //System.out.println("" + ITEM.getStock() + "\n");
+                    //}
+                    //else { //Users ingredients are stocked well, not below stock of 3
+                        //System.out.println("All the ingredients at your house are in stock and not low in stock!");
+                    //}
                     String shoppingList = shoppingListScanner.nextLine(); //User input is the shopping list
-                    myWriter.write(ITEM.getStock() < 3);
+                    //myWriter.write(ITEM.getStock() < 3);
                     myWriter.write(shoppingList); //Write user input to file
                     myWriter.close();
                     System.out.println("Shopping list updated with: " + shoppingList);

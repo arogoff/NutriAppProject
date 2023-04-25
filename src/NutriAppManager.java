@@ -21,7 +21,7 @@ public class NutriAppManager {
         // load in user's personal history + stock here as we now know what user it is
 
         // load in the ingredients
-        HashMap<String, Ingredient> ingredients = LoadIngredients.readIn();
+        HashMap<String, Ingredient> ingredients = LoadIngredients.readIn(user.getUsername());
 
         // load in the goal/set goalManager up
         GoalManager goalManager = new GoalManager();
@@ -49,12 +49,14 @@ public class NutriAppManager {
                         4 - Track Workout
                         5 - Track Meal
                         6 - View Number of Calories Left in the Day
-                        7 - View Ingredients
-                        8 - Add Recipe
-                        9 - Get Recipe
-                        10 - View Shopping List
-                        11 - View History
-                        12 - Logout/Exit""");
+                        7 - View All Ingredients
+                        8 - View Ingredient Info
+                        9 - Update Ingredient Stock
+                        10 - Add Recipe
+                        11 - Get Recipe
+                        12 - View Shopping List
+                        13 - View History
+                        14 - Logout/Exit""");
 
                 int option = scanner.nextInt();
                 scanner.nextLine();
@@ -92,24 +94,68 @@ public class NutriAppManager {
                     System.out.println("Option 5");
                 } else if (option == 6) { //View Number of Calories Left in the Day
                     System.out.println("Option 6");
-                } else if (option == 7) { //View ingredients
-
+                } else if (option == 7) { //View all ingredients
                     for (String i : ingredients.keySet()) {
                         System.out.println(ingredients.get(i).getInfo());
                     }
-                } else if (option == 8) { //Add recipe
+                } else if (option == 8) {
+                    boolean repeat = true;
+
+                    while(repeat) {
+                        System.out.println("Enter Ingredient ID:\n");
+                        String id = scanner.nextLine();
+
+                        if (ingredients.containsKey(id)) {
+                            repeat = false;
+                            System.out.println(ingredients.get(id).getInfo());
+                        }else {
+                            System.out.println("Ingredient ID does not exist");
+                        }
+                    }
+                }else if (option == 9) {
+                    boolean repeat = true;
+
+                    while(repeat) {
+                        System.out.println("Enter Ingredient ID:\n");
+                        String id = scanner.nextLine();
+
+                        if (ingredients.containsKey(id)) {
+                            repeat = false;
+                            boolean stockRepeat = true;
+                            while(stockRepeat) {
+                                try {
+                                    System.out.println("Enter the number you want to increment the stock by.\n");
+                                    int num = scanner.nextInt();
+
+                                    if(num > 0) {
+                                        stockRepeat = false;
+                                        Ingredient i = ingredients.get(id);
+                                        i.setStock(i.getStock() + num);
+                                        ingredients.replace(id, i);
+                                        LoadIngredients.updateStock(i, user.getUsername());
+                                    }else {
+                                        System.out.println("You entered a number that is less than 0.");
+                                    }
+                                } catch (NumberFormatException nfe) {
+                                    System.out.println("You did not enter a number, try again.");
+                                }
+                            }
+                        }else {
+                            System.out.println("Ingredient ID does not exist");
+                        }
+                    }
+                }else if (option == 10) { //Add recipe
                     System.out.println("Option 8");
                     Recipe.initializeRecipeName();
-                } else if (option == 9) { //Get recipe
+                } else if (option == 11) { //Get recipe
                     System.out.println("Option 9");
                     Recipe.getRecipe();
-                }  else if (option == 10) { //View shopping list
+                }  else if (option == 12) { //View shopping list
                     viewShoppingList();
-                } else if (option == 11) { //View History
+                } else if (option == 13) { //View History
                     System.out.println("Option 11");
-                } else if (option == 12) { //Logout/Exit
+                } else if (option == 14) { //Logout/Exit
                     run = false;
-                    System.exit(0);
                 } else {
                     System.out.println("Invalid option entered, enter a number 1-12 to view data.");
                 }
