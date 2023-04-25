@@ -122,7 +122,7 @@ public class TrackingMeal {
     }
 
     // Method to prepare a meal and deduct ingredients and calories from stock and daily target, respectively
-    public void prepareMeal(String mealName) {
+    public String prepareMeal(String mealName) {
         
         List<Recipe> recipes = meals.get(mealName);
         int calories = 0;
@@ -131,12 +131,12 @@ public class TrackingMeal {
             for (Ingredient ingredient : recipe.ingredients.keySet()) {
               // If the ingredient is not in stock, throw an exception
               if (!ingredientStock.containsKey(ingredient.name)) {
-                throw new RuntimeException("Ingredient not in stock: " + ingredient.name);
+                return "Ingredient not in stock: " + ingredient.name;
             }  
 
              // If there is not enough of the ingredient in stock, throw an exception
              if (ingredientStock.get(ingredient.name) <= 0) {
-                throw new RuntimeException("Not enough of ingredient in stock: " + ingredient.name);
+                return "Not enough of ingredient in stock: " + ingredient.name;
             }
             // Deduct the ingredient from stock
             ingredientStock.put(ingredient.name, ingredientStock.get(ingredient.name) - 1);
@@ -152,6 +152,7 @@ public class TrackingMeal {
          }
          PersonalHistory.addMeal(mealName, calories);
 
+      return "";
          /** 
         for (String recipe : recipes) {
             List<String> ingredients = recipeIngredients.get(recipe);
@@ -209,9 +210,10 @@ public class TrackingMeal {
     public static void main(String[] args) {
         // Initialize meal tracker with a daily target of 2000 calories
         TrackingMeal mealTracker = new TrackingMeal(2000);
+
        mealTracker.recipes.add(getRecipe("Banana Cake"));
         mealTracker.meals.put("lunch",recipes);
         mealTracker.displayMeals();
-        
+        mealTracker.prepareMeal("lunch");
     }
 }
