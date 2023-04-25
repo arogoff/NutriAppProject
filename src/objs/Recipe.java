@@ -5,7 +5,8 @@ import java.io.*;
 public class Recipe extends Food{
     public static String title;
     public static double calories = 0;
-    public static HashMap<String, Double> ingredients = new HashMap<String, Double>();
+    public static HashMap<String, Double> ingredientAmt = new HashMap<String, Double>();
+    public static HashMap<Ingredient, Double> ingredients = new HashMap<Ingredient, Double>();
     public static ArrayList<String> instructions = new ArrayList<String>();
 /**
  * Recipes are also a type of food. The user may create a new recipe by specifying:
@@ -45,10 +46,31 @@ public class Recipe extends Food{
         //change to only take in ingredient id + append username to top of file
         while(!option.equals("exit")){
             String things[] = option.split(";");
-            ingredients.put(things[0], Double.parseDouble(things[1]));
+            ingredientAmt.put(things[0], Double.parseDouble(things[1]));
             option = scanner.nextLine();
         }
 
+        try {
+            BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/ingredients.csv"));
+
+            inputFile.readLine(); // get rid of first line, just headers
+            String line;
+
+            while ((line = inputFile.readLine()) != null) {
+                // split the line on a comma if there are no " before the ,
+                // allows strings like "xyz,be",hi to be split into "xyz,be" and hi.
+                //ingredient id = key, ingredient obj = value
+                Ingredient x = new Ingredient(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1));
+                if(ingredientAmt.containsKey(x.ingNum())){
+                    ingredients.put(x, ingredientAmt.get(x.ingNum()));
+                    
+                }
+               
+            }
+          
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
       // System.out.println(ingredients);
      //Take in the steps for the recipe (Saved in arraylist)
@@ -65,16 +87,22 @@ public class Recipe extends Food{
 
     //save the recipe to recipes.txt
     public static void saveRecipe() {
-        String bigString = "Recipe: ";
-        bigString += title + "\n" + ingredients;
+        String bigString = "\nRecipe: ";
+        bigString += title + "\n";
+
+        for (Ingredient i : ingredients.keySet()) {
+            bigString += ingredients.get(i) +  " " + i.name + "\n";
+          }
 
         for (int i = 0; i < instructions.size(); i++) {
             bigString += "\nStep " + i + ": " + instructions.get(i);
         }
 
         try {
-            FileWriter myWriter = new FileWriter("recipes.txt");
-            myWriter.write(bigString);
+            FileWriter myWriter = new FileWriter("src\\databases\\recipes.txt", true);
+            BufferedWriter br = new BufferedWriter(myWriter);
+            br.write(bigString);
+            br.close();
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
           } catch (IOException e) {
@@ -148,7 +176,8 @@ public class Recipe extends Food{
     public static void main(String[] args) {
         // System.out.println("In personal history...");
        // System.out.println(getRecipe());
-       // createRecipe("Cake");
+        createRecipe("Angel Cake");
+        //saveRecipe();
     }
         
 }

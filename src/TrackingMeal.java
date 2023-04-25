@@ -14,15 +14,16 @@ import src.objs.*;
 public class TrackingMeal {
 
     // Define variables to track meals, recipes, and ingredients
-    private Map<String, List<String>> mealRecipes;
+    private Map<String, List<Recipe>> meals;
     private Map<String, List<String>> recipeIngredients;
+   
     private Map<String, Integer> ingredientStock;
     private int dailyTargetCalories;
     private int consumedCalories;
 
     // Constructor to initialize variables
     public TrackingMeal(int dailyTargetCalories) {
-        this.mealRecipes = new HashMap<>();
+        this.meals = new HashMap<>();
         this.recipeIngredients = new HashMap<>();
         this.ingredientStock = new HashMap<>();
         this.dailyTargetCalories = dailyTargetCalories;
@@ -39,19 +40,47 @@ public class TrackingMeal {
             }
         }
        
-       
     }
 
     // Method to add a meal with its recipes to the system
-    public void addMeal(String mealName, List<String> recipes) {
-        mealRecipes.put(mealName, recipes);
+    public void addMeal(String mealName, List<Recipe> recipes) {
+        meals.put(mealName, recipes);
+        System.out.println("Meal created.");
+        //mealRecipes.put(mealName, recipes);
     }
 
     // Method to prepare a meal and deduct ingredients and calories from stock and daily target, respectively
     public void prepareMeal(String mealName) {
         
-        List<String> recipes = mealRecipes.get(mealName);
+        List<Recipe> recipes = meals.get(mealName);
         int calories = 0;
+
+        for (Recipe recipe : recipes) {
+            for (Ingredient ingredient : recipe.ingredients.keySet()) {
+              // If the ingredient is not in stock, throw an exception
+              if (!ingredientStock.containsKey(ingredient.name)) {
+                throw new RuntimeException("Ingredient not in stock: " + ingredient.name);
+            }  
+
+             // If there is not enough of the ingredient in stock, throw an exception
+             if (ingredientStock.get(ingredient.name) <= 0) {
+                throw new RuntimeException("Not enough of ingredient in stock: " + ingredient.name);
+            }
+            // Deduct the ingredient from stock
+            ingredientStock.put(ingredient.name, ingredientStock.get(ingredient.name) - 1);
+            }
+
+        }
+
+         // Add the total meal calories to the consumed calories
+         consumedCalories += calories;
+         // If the consumed calories exceed the daily target, throw a warning
+         if (consumedCalories > dailyTargetCalories) {
+             System.out.println("Warning: Exceeded daily target calories by " + (consumedCalories - dailyTargetCalories));
+         }
+         PersonalHistory.addMeal(mealName, calories);
+
+         /** 
         for (String recipe : recipes) {
             List<String> ingredients = recipeIngredients.get(recipe);
             for (String ingredient : ingredients) {
@@ -76,7 +105,7 @@ public class TrackingMeal {
             System.out.println("Warning: Exceeded daily target calories by " + (consumedCalories - dailyTargetCalories));
         }
         PersonalHistory.addMeal(mealName, calories);
-
+*/
     }
 
     // Method to get the calories for a recipe based on its ingredients

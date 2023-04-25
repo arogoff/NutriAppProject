@@ -1,8 +1,15 @@
-Recipe: White Cake
-1 EGG
-2 MILK
-0.5 baking powder
-Mix together egg and milk. Give a pinch of baking salt. Done.
+Recipe: Banana Cake
+2.0 "ROWAL,RAW"
+5.0 "CANDIES,REESE'S FAST BREAK,CANDY BAR"
+9.0 "PASTA,DRY,UNENR"
 
-Recipe: Brownie
-2 Egg
+Step 0: boil noodles
+Step 1: mash up everything
+Step 2: serve coldRecipe: Angel Cake
+1.0 "BUTTER,WITH SALT"
+8.0 "CHEESE,CHESHIRE"
+3.0 "DATES,MEDJOOL"
+
+Step 0: chop up dates
+Step 1: churn butter
+Step 2: stir violently

@@ -62,6 +62,7 @@ public class PersonalHistory {
  
      public void recordHistory(User anon){
         //add time stamp
+       
         bigString.concat("Weight: " + anon.getWeight() + "\n");
         bigString.concat("Daily target: " + anon.getDailyTarget() + "\n");
         bigString.concat("You've consumed " + caloriesConsumed + " calories.\n");
