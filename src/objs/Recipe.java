@@ -38,7 +38,7 @@ public class Recipe extends Food{
     public static void createRecipe(String called){
         title= called;
         
-        System.out.println("Create the " + title + " recipe! Enter the ingredients in the format of 'Ingredient name';'quantity'. Type 'exit' to finish.  ");
+        System.out.println("Create the " + title + " recipe! Enter the ingredients in the format of 'Ingredient_id';'quantity'. Type 'exit' to finish.  ");
         Scanner scanner = new Scanner(System.in);
         //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
         String option = scanner.nextLine();
@@ -48,6 +48,8 @@ public class Recipe extends Food{
             ingredients.put(things[0], Double.parseDouble(things[1]));
             option = scanner.nextLine();
         }
+
+
       // System.out.println(ingredients);
      //Take in the steps for the recipe (Saved in arraylist)
         System.out.println("Enter the steps for the recipe one at a time. Enter 'exit' when done. ");
@@ -120,7 +122,26 @@ public class Recipe extends Food{
     }
 
     public double getRecipeCalories(){
+        try {
+            BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/ingredients.csv"));
 
+            inputFile.readLine(); // get rid of first line, just headers
+            String line;
+
+            while ((line = inputFile.readLine()) != null) {
+                // split the line on a comma if there are no " before the ,
+                // allows strings like "xyz,be",hi to be split into "xyz,be" and hi.
+                //ingredient id = key, ingredient obj = value
+                Ingredient x = new Ingredient(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1));
+                if(ingredients.containsKey(x.ingNum())){
+                    calories += Double.parseDouble(x.calories);
+                }
+               
+            }
+          
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         return calories;
     }
 //this main method is for testing purposes
