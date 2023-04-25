@@ -103,6 +103,7 @@ public class PersonalHistory {
         */
      }
  
+     //display the history info from the .csv file
      public static void displayHistory(User anon) throws IOException{
         String bigString = "";
 
@@ -132,6 +133,7 @@ public class PersonalHistory {
         System.out.println();
      }
 
+     //make the info from the .csv file comprehensible
      public static void decipherHistory(String[] person, User anon){
         System.out.println("Weight: " + anon.weight);
         System.out.println("Calories consumed today: " + person[3]);
@@ -149,8 +151,9 @@ public class PersonalHistory {
         }
         */
      }
+     //store history info to .csv file
      public static void recordHistory(User anon){
-        //add time stamp
+        
        
         bigString.concat("Weight: " + anon.getWeight() + "\n");
         bigString.concat("Daily target: " + anon.getDailyTarget() + "\n");

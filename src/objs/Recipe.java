@@ -151,6 +151,7 @@ public class Recipe extends Food{
 
     }
 
+    //get a recipe but specifically for meal functionality
     public static Recipe getRecipeForMeal(String recipeName){
        Recipe sample = new Recipe(recipeName, recipeName, recipeName, recipeName, recipeName, recipeName);
       

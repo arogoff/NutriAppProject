@@ -36,13 +36,14 @@ public class TrackingMeal {
         this.consumedCalories = 0;
     }
 
+    //get recipe object based on recipe name
     public static Recipe getRecipe(String recipeName){
        return Recipe.getRecipeForMeal(recipeName);
     }
 
-    //Check if recipes.txt has any recipes with this user's username attached
+    //create a new meal
     public static String createMeal(User anon){
-        //check if recipes.txt is empty
+       
         System.out.println("You need recipes to create a meal.");
 
         //if it isnt empty, then proceed to select recipe(s) to create meal with

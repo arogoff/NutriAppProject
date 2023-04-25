@@ -1,9 +1,5 @@
 userName,dailyTarget,caloriesConsumed,weight,meals,workouts
 bob,3000,400,120,dinner,pushups
-bob,notset,0,233,[],<>
-
 bob,2291,0,233,[],<You burned 0 in a high workout that lasted 23 minutes | >
 bob,2291,0,233,[],<You burned 0 in a high workout that lasted 85 minutes | >
-bob,2291,0,233,[],<>
-bob,2291,0,233,[],<>
-bob,2291,0,233,[],<>
+bob,2291,0,233,[],<You burned 850 in a high workout that lasted 34 minutes | >
