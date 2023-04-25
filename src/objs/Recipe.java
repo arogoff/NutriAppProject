@@ -8,6 +8,7 @@ public class Recipe extends Food{
     public static HashMap<String, Double> ingredientAmt = new HashMap<String, Double>();
     public static HashMap<Ingredient, Double> ingredients = new HashMap<Ingredient, Double>();
     public static ArrayList<String> instructions = new ArrayList<String>();
+    public static User person;
 /**
  * Recipes are also a type of food. The user may create a new recipe by specifying:
     A unique name for the new recipe.
@@ -26,8 +27,8 @@ public class Recipe extends Food{
 
     }
     /** Get the intended recipe name from the user input, then send it to the createRecipe method */
-    public static void initializeRecipeName() {
-
+    public static void initializeRecipeName(User anon) {
+        person = anon;
         System.out.println("Please enter the name of the recipe you would like to create: ");
         Scanner scanner = new Scanner(System.in);
         
@@ -87,6 +88,7 @@ public class Recipe extends Food{
 
     //save the recipe to recipes.txt
     public static void saveRecipe() {
+
         String bigString = "\nRecipe: ";
         bigString += title + "\n";
 
@@ -101,7 +103,7 @@ public class Recipe extends Food{
         try {
             FileWriter myWriter = new FileWriter("src\\databases\\recipes.txt", true);
             BufferedWriter br = new BufferedWriter(myWriter);
-            br.write(bigString);
+            br.write(bigString + "\nDONE");
             br.close();
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
@@ -120,7 +122,7 @@ public class Recipe extends Food{
         try {
             String fullText = "";
          //   File parentDir = new File("..");
-            File myObj = new File("src/recipes.txt");
+            File myObj = new File("src\\databases\\recipes.txt");
             Scanner myReader = new Scanner(myObj);
             ArrayList<String> infoDump = new ArrayList<String>();
             while (myReader.hasNextLine()) {
@@ -148,6 +150,80 @@ public class Recipe extends Food{
         return "Couldn't find recipe for " + recipeName;
 
     }
+
+    public static Recipe getRecipeForMeal(String recipeName){
+       Recipe sample = new Recipe(recipeName, recipeName, recipeName, recipeName, recipeName, recipeName);
+      
+        try {
+            String fullText = "";
+         //   File parentDir = new File("..");
+            File myObj = new File("src\\databases\\recipes.txt");
+            Scanner myReader = new Scanner(myObj);
+            ArrayList<String> infoDump = new ArrayList<String>();
+            while (myReader.hasNextLine()) {
+              infoDump.add(myReader.nextLine());
+            }
+
+            int index = infoDump.indexOf("Recipe: " + recipeName);
+            myReader.close();
+
+            if(index != -1){
+                int indexCounter = index+1;
+               
+                ArrayList<String> steps = new ArrayList<>();
+                while(!infoDump.get(indexCounter).contains("END OF INGREDIENTS")){
+                    steps.add(infoDump.get(indexCounter));
+                    indexCounter++;
+                }
+                indexCounter+=1;
+                ArrayList<String> instr = new ArrayList<>();
+                while(!infoDump.get(indexCounter).contains("END OF RECIPE")){
+                    instr.add(infoDump.get(indexCounter));
+                    indexCounter++;
+                }
+               
+                sample.instructions = instr;
+                for (String string : steps) {
+                    String[] ing = string.split(" ", 2);
+                    //System.out.println(ing[1]);
+                    sample.ingredientAmt.put(ing[1], Double.parseDouble(ing[0]));
+                    try {
+                        BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/ingredients.csv"));
+            
+                        inputFile.readLine(); // get rid of first line, just headers
+                        String line;
+            
+                        while ((line = inputFile.readLine()) != null) {
+                            // split the line on a comma if there are no " before the ,
+                            // allows strings like "xyz,be",hi to be split into "xyz,be" and hi.
+                            //ingredient id = key, ingredient obj = value
+                            Ingredient x = new Ingredient(line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1));
+                            if(sample.ingredientAmt.containsKey(x.name)){
+                                sample.ingredients.put(x, sample.ingredientAmt.get(x.name));
+                                
+                            }
+                           
+                        }
+                      
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                
+            } else{
+                System.out.println("recipe not found");
+            }
+            
+            return sample;
+          } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+          }
+
+        return null;
+
+    }
+
 
     public double getRecipeCalories(){
         try {

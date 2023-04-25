@@ -1,5 +1,10 @@
 package src;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import src.PersonalHistory;
 
@@ -14,9 +19,10 @@ import src.objs.*;
 public class TrackingMeal {
 
     // Define variables to track meals, recipes, and ingredients
-    private Map<String, List<Recipe>> meals;
+    private static Map<String, List<Recipe>> meals;
     private Map<String, List<String>> recipeIngredients;
-   
+    public static ArrayList<Recipe> recipes = new ArrayList<>();
+    
     private Map<String, Integer> ingredientStock;
     private int dailyTargetCalories;
     private int consumedCalories;
@@ -30,13 +36,79 @@ public class TrackingMeal {
         this.consumedCalories = 0;
     }
 
+    public static Recipe getRecipe(String recipeName){
+       return Recipe.getRecipeForMeal(recipeName);
+    }
+
+    //Check if recipes.txt has any recipes with this user's username attached
+    public static String createMeal(User anon){
+        //check if recipes.txt is empty
+        System.out.println("You need recipes to create a meal.");
+
+        //if it isnt empty, then proceed to select recipe(s) to create meal with
+        try {
+            String fullText = "";
+        //   File parentDir = new File("..");
+            File myObj = new File("src/recipes.txt");
+            FileReader fr = new FileReader(myObj);  //Creation of File Reader object
+            BufferedReader br = new BufferedReader(fr); 
+            Scanner myReader = new Scanner(myObj);
+            String s;    
+            ArrayList<String> infoDump = new ArrayList<String>();
+            while ((s=br.readLine())!=null) {
+                
+                if(s.contains("Recipe: ")){
+                    infoDump.add(s);
+                }
+            
+            }
+            myReader.close();
+            String bigString = "You have the following recipes:\n";
+            for (String string : infoDump) {
+                bigString += string + "\n";
+            }
+
+            System.out.println("Which recipe(s) do you want to add to this meal? Type exit when finished.");
+            Scanner scanner = new Scanner(System.in);
+        //Take in the ingredients and how many of each (saved in hashmap in the format of <IngredientName, IngredientQuantity>)
+            String option = scanner.nextLine();
+            List<Recipe> recipesToAdd = new ArrayList<>();
+            while(!option.equals("exit")){
+               recipesToAdd.add(Recipe.getRecipeForMeal(option));
+               // ingredientAmt.put(things[0], Double.parseDouble(things[1]));
+                option = scanner.nextLine();
+            }
+
+            return bigString;
+    } catch (FileNotFoundException e) {
+        System.out.println("An error occurred.");
+        e.printStackTrace();
+      } catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+    }
+    return "No recipes found.";
+
+    
+    }
+    //check if the user's personal history has prepared any meals before
+    public static String mealsExist(User anon){
+
+       // PersonalHistory.mealsExist(anon);
+        return null;
+        
+    }
+
+
+
     // Method to add a recipe with its ingredients to the system
-    public void addRecipe(String recipeName, List<String> ingredients) {
-        recipeIngredients.put(recipeName, ingredients);
-        for (String ingredient : ingredients) {
-            // If the ingredient is not already in stock, add it with a quantity of 0
-            if (!ingredientStock.containsKey(ingredient)) {
-                ingredientStock.put(ingredient, 0);
+    public void addRecipe(Recipe recipe) {
+       // recipeIngredients.put(recipeName, ingredients);
+        Recipe.getRecipe();
+        for (Ingredient ingredient : recipe.ingredients.keySet()) {
+             // If the ingredient is not already in stock, add it with a quantity of 0
+             if (!ingredientStock.containsKey(ingredient.name)) {
+                ingredientStock.put(ingredient.name, 0);
             }
         }
        
@@ -124,9 +196,22 @@ public class TrackingMeal {
         return 0;
     }
 
+    public static void displayMeals(){
+        for (String recipe : meals.keySet()) {
+            for (Recipe recipez : meals.get(recipe)) {
+                System.out.println(recipez.name);
+                System.out.println(recipez.instructions);
+            }
+        }
+       
+    }
     // Main function for testing the meal tracker
     public static void main(String[] args) {
         // Initialize meal tracker with a daily target of 2000 calories
         TrackingMeal mealTracker = new TrackingMeal(2000);
-
-    }}
+       mealTracker.recipes.add(getRecipe("Banana Cake"));
+        mealTracker.meals.put("lunch",recipes);
+        mealTracker.displayMeals();
+        
+    }
+}

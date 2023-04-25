@@ -2,10 +2,12 @@ Recipe: Banana Cake
 2.0 "ROWAL,RAW"
 5.0 "CANDIES,REESE'S FAST BREAK,CANDY BAR"
 9.0 "PASTA,DRY,UNENR"
-
+END OF INGREDIENTS
 Step 0: boil noodles
 Step 1: mash up everything
-Step 2: serve coldRecipe: Angel Cake
+Step 2: serve cold
+END OF RECIPE
+Recipe: Angel Cake
 1.0 "BUTTER,WITH SALT"
 8.0 "CHEESE,CHESHIRE"
 3.0 "DATES,MEDJOOL"
@@ -13,3 +15,9 @@ Step 2: serve coldRecipe: Angel Cake
 Step 0: chop up dates
 Step 1: churn butter
 Step 2: stir violently
+Recipe: Stir Fry
+2.0 "NOODLES,EGG,DRY,UNENR"
+1.0 "NOODLES,EGG,UNENR,CKD,WO/ ADDED SALT"
+
+Step 0: mix everything up
+Step 1: freeze for 10 hours

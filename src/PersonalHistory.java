@@ -1,6 +1,9 @@
 package src;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
@@ -35,6 +38,31 @@ public class PersonalHistory {
         //Total calories lost from all workouts stored
          caloriesLost += caloriesBurned;
          System.out.println(test);
+     }
+
+     //return a list of meals in the user's history
+     public static List<String> mealsExist(User anon) throws IOException{
+
+       
+        try {
+            BufferedReader inputFile = new BufferedReader(new FileReader("src/databases/histories.csv"));
+            inputFile.readLine(); // get rid of first line, just headers
+            String line;
+
+            while ((line = inputFile.readLine()) != null) {
+            String[] person = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)", -1);
+
+            
+            }
+
+            //if username isnt found in the array, then the user doesnt have meals
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+        
+        return null;
      }
 
      /** Get info (meal name and calories in it) from TrackingMeal 
@@ -77,7 +105,7 @@ public class PersonalHistory {
         try {
             FileWriter fw = new FileWriter("src/databases/histories.csv", true);
             BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(anon.getUsername() + ", " + anon.getDailyTarget() + ", " + bigString);
+            bw.write("\n" + anon.getUsername() + "," + anon.getDailyTarget() + "," + bigString);
             bw.close();
             //System.out.println("Successfully wrote to the file.");
         } catch (IOException e) {

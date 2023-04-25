@@ -92,6 +92,21 @@ public class NutriAppManager {
                     System.out.println("Option 4");
                 } else if (option == 5) { //Track Meal
                     System.out.println("Option 5");
+                    System.out.println("""
+                        What would you like to do today?
+                            10 - Create Meal
+                            11 - Prepare Meal
+                            """);
+                        Scanner scan = new Scanner(System.in);
+        
+                    int input = scan.nextInt();
+                    if(input == 10 ){ //create meal
+                        TrackingMeal.createMeal(user1);
+                    } else if (input == 11) {
+                        TrackingMeal.mealsExist(user1);
+                    } else {
+                        System.out.println("Sorry, that's not an option.");
+                    }
                 } else if (option == 6) { //View Number of Calories Left in the Day
                     System.out.println("Option 6");
                 } else if (option == 7) { //View all ingredients
@@ -145,7 +160,7 @@ public class NutriAppManager {
                         }
                     }
                 }else if (option == 10) { //Add recipe
-                    Recipe.initializeRecipeName();
+                    Recipe.initializeRecipeName(user1);
                 } else if (option == 11) { //Get recipe
                     Recipe.getRecipe();
                 }  else if (option == 12) { //View shopping list
